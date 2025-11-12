@@ -561,6 +561,8 @@
   :config
   (setq esup-depth 0))
 
+(use-package benchmark-init)
+
 (use-package minimap
   :commands minimap-mode
   :config
@@ -618,12 +620,14 @@
   (("M-g r" . counsel-rg)))
 
 (use-package swiper
+  :after ivy
   :bind (([remap isearch-forward] . swiper-isearch)))
 
 (use-package amx
   :hook (ivy-mode . amx-mode))
 
 (use-package wgrep
+  :after ivy
   :config
   (setq wgrep-auto-save-buffer t))
 
@@ -634,7 +638,7 @@
   :hook (ivy-mode . nerd-icons-ivy-rich-mode))
 
 (use-package company
-  :hook (after-init . global-company-mode)
+  :hook (prog-mode . global-company-mode)
   :config
   (setq company-idle-delay 0.2)
   (setq company-tooltip-idle-delay 10)
