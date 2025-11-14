@@ -155,7 +155,7 @@
     "vim.incsearch": true,
     "vim.inccommand": "replace",
     "vim.joinspaces": true,
-    "vim.leader": "\\",
+    "vim.leader": " ",
     "vim.maxmapdepth": 1000,
     "vim.report": 2,
     "vim.shell": "",

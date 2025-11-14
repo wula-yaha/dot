@@ -63,6 +63,15 @@ link_file() {
 main() {
     os=$(detect_os)
 
+    # Vim
+    link_file "$dotdir/vim/init.vim" "$HOME/.vim/vimrc"
+
+    # Neovim
+    link_file "$dotdir/neovim/init.lua" "$HOME/.config/nvim/init.lua"
+
+    # WezTerm
+    link_file "$dotdir/wezterm/wezterm.lua" "$HOME/.config/wezterm/wezterm.lua"
+
     # Emacs
     link_file "$dotdir/emacs/init.el" "$HOME/.emacs.d/init.el"
     link_file "$dotdir/emacs/early-init.el" "$HOME/.emacs.d/early-init.el"

@@ -57,9 +57,6 @@ function Main {
 
     # Creating key-value mapping and use loop to create softlink
     $LinkMap = @{
-        # Emacs
-        (Join-Path (Join-Path $DotDir "emacs") "init.el") = (Join-Path (Join-Path $env:USERPROFILE ".emacs.d") "init.el")
-        (Join-Path (Join-Path $DotDir "emacs") "early-init.el") = (Join-Path (Join-Path $env:USERPROFILE ".emacs.d") "early-init.el")
         # VSCode
         (Join-Path (Join-Path $DotDir "vscode") "settings.json") = (Join-Path (Join-Path (Join-Path $env:APPDATA "Code") "User") "settings.json")
         (Join-Path (Join-Path $DotDir "vscode") "keybindings.json") = (Join-Path (Join-Path (Join-Path $env:APPDATA "Code") "User") "keybindings.json")
