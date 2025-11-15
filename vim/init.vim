@@ -235,6 +235,15 @@ augroup load_better_whitespace
     \| highlight link ExtraWhitespace Cursor
 augroup END
 
+Plug 'blueyed/vim-diminactive', { 'on': [] }
+augroup load_diminactive
+  autocmd!
+  autocmd BufReadPost * call plug#load('vim-diminactive')
+    \| autocmd! load_diminactive
+    \| let g:diminactive_use_colorcolumn = 0
+    \| let g:diminactive_use_syntax = 1
+augroup END
+
 Plug 'ap/vim-css-color', { 'on': [] }
 augroup load_css_color
   autocmd!
@@ -248,6 +257,22 @@ augroup load_commentary
   autocmd BufReadPre * call plug#load('vim-commentary')
     \| autocmd! load_commentary
 augroup END
+
+Plug 'justinmk/vim-sneak', { 'on': [] }
+augroup load_sneak
+  autocmd!
+  autocmd BufReadPre * call plug#load('vim-sneak')
+    \| autocmd! load_sneak
+augroup END
+
+if v:version < 903
+  Plug 'editorconfig/editorconfig-vim', { 'on': [] }
+  augroup load_editorconfig
+    autocmd!
+    autocmd BufReadPre * call plug#load('editorconfig-vim')
+      \| autocmd! load_editorconfig
+  augroup END
+endif
 
 Plug 'dense-analysis/ale', { 'on': [] }
 augroup load_ale
@@ -336,6 +361,7 @@ vnoremap <silent> <S-l> <Plug>MoveBlockRight
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim', { 'on': [ 'Files', 'Buffers', 'Colors', 'Rg', 'Lines', 'BLines', 'History' ] }
+Plug 'pbogut/fzf-mru.vim', { 'on' : [ 'FZFMru' ] }
 nnoremap <Leader>ff :Files<CR>
 nnoremap <C-x><C-f> :Files<CR>
 nnoremap <Leader>fF :Files ~/<CR>
@@ -346,11 +372,21 @@ nnoremap <C-x><C-b> :Buffers<CR>
 nnoremap <Leader>fc :Colors<CR>
 nnoremap <Leader>fs :BLines<CR>
 nnoremap <Leader>fS :Lines<CR>
+nnoremap <Leader>fm :FZFMru<CR>
 
 Plug 'terryma/vim-expand-region', { 'on': [ '<Plug>(expand_region_expand)', '<Plug>(expand_region_shrink)' ] }
 map + <Plug>(expand_region_expand)
 map _ <Plug>(expand_region_shrink)
 
+if has('python3')
+  Plug 'vim-autoformat/vim-autoformat', { 'on': [ 'Autoformat' ] }
+else
+  Plug 'sbdchd/neoformat', { 'on': [ 'Neoformat' ] }
+endif
+Plug 'metakirby5/codi.vim', { 'on': [ 'Codi', 'CodiNew', 'CodiSelect', 'CodiExpand' ] }
+Plug 'skywind3000/asyncrun.vim', { 'on': [ 'AsyncRun' ] }
+Plug 'vim-test/vim-test', { 'on': [ 'TestNearest', 'TestFile', 'TestSuite', 'TestLast', 'TestVisit' ] }
+Plug 'jalvesaq/Vim-R', { 'on': [ 'R' ] }
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': [ 'go' ] }
 Plug 'mattn/emmet-vim', { 'for': [ 'html' ] }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': [ 'markdown', 'vim-plug' ], 'on': [ 'MarkdownPreview' ]}
@@ -409,5 +445,14 @@ augroup load_completion
     \| call lsp#register_server({ 'name': 'clangd', 'cmd': { server_info -> [ 'clangd', '-background-index' ] }, 'whitelist': ['c', 'cpp', 'objc', 'objcpp'] })
     \| endif
 augroup END
+
+if v:version > 900 && executable('node')
+  Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+endif
+
+if has('python3')
+  Plug 'puremourning/vimspector', { 'on': [ '<Plug>VimspectorContinue', '<Plug>VimspectorStop', '<Plug>VimspectorRestart', '<Plug>VimspectorBreakpoints', '<Plug>VimspectorToggleBreakpoint', '<Plug>VimspectorJumpToNextBreakpoint', '<Plug>VimspectorJumpToPreviousBreakpoint' ] }
+  let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
+endif
 
 call plug#end()
