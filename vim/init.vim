@@ -71,6 +71,22 @@ augroup END
 
 call plug#begin('~/.vim/plugged')
 
+" SYNTAX
+Plug 'sheerun/vim-polyglot', { 'on': [] }
+augroup load_polyglot
+  autocmd!
+  autocmd InsertEnter * call plug#load('vim-polyglot') | autocmd! load_polyglot
+augroup END
+
+Plug 'dense-analysis/ale', { 'on': [] }
+augroup load_ale
+  autocmd!
+  autocmd InsertEnter * call plug#load('ale') | autocmd! load_ale
+    \| let g:ale_lint_on_text_changed = 'never'
+    \| let g:ale_lint_on_insert_leave = 0
+augroup END
+
+" UI
 Plug 'mhinz/vim-startify', { 'on': [] }
 augroup load_startify
   autocmd!
@@ -88,12 +104,6 @@ augroup load_startify
     \ '',
     \ '',
     \]
-augroup END
-
-Plug 'sheerun/vim-polyglot', { 'on': [] }
-augroup load_polyglot
-  autocmd!
-  autocmd InsertEnter * call plug#load('vim-polyglot') | autocmd! load_polyglot
 augroup END
 
 Plug 'tpope/vim-sensible', { 'on': [] }
@@ -173,6 +183,22 @@ augroup load_indentline
     \| IndentLinesEnable
 augroup END
 
+Plug 'ntpeters/vim-better-whitespace', { 'on': [] }
+augroup load_better_whitespace
+  autocmd!
+  autocmd BufReadPost * call plug#load('vim-better-whitespace') | autocmd! load_better_whitespace
+    \| highlight link ExtraWhitespace Cursor
+augroup END
+
+Plug 'blueyed/vim-diminactive', { 'on': [] }
+augroup load_diminactive
+  autocmd!
+  autocmd BufReadPost * call plug#load('vim-diminactive') | autocmd! load_diminactive
+    \| let g:diminactive_use_colorcolumn = 0
+    \| let g:diminactive_use_syntax = 1
+augroup END
+
+" TOOL
 Plug 'andymass/vim-matchup', { 'on': [] }
 augroup load_matchup
   autocmd!
@@ -196,21 +222,6 @@ augroup load_gitgutter
   autocmd!
   autocmd BufReadPost * call plug#load('vim-gitgutter') | autocmd! load_gitgutter
     \| GitGutterEnable
-augroup END
-
-Plug 'ntpeters/vim-better-whitespace', { 'on': [] }
-augroup load_better_whitespace
-  autocmd!
-  autocmd BufReadPost * call plug#load('vim-better-whitespace') | autocmd! load_better_whitespace
-    \| highlight link ExtraWhitespace Cursor
-augroup END
-
-Plug 'blueyed/vim-diminactive', { 'on': [] }
-augroup load_diminactive
-  autocmd!
-  autocmd BufReadPost * call plug#load('vim-diminactive') | autocmd! load_diminactive
-    \| let g:diminactive_use_colorcolumn = 0
-    \| let g:diminactive_use_syntax = 1
 augroup END
 
 Plug 'ap/vim-css-color', { 'on': [] }
@@ -238,14 +249,6 @@ if v:version < 903
     autocmd BufReadPre * call plug#load('editorconfig-vim') | autocmd! load_editorconfig
   augroup END
 endif
-
-Plug 'dense-analysis/ale', { 'on': [] }
-augroup load_ale
-  autocmd!
-  autocmd InsertEnter * call plug#load('ale') | autocmd! load_ale
-    \| let g:ale_lint_on_text_changed = 'never'
-    \| let g:ale_lint_on_insert_leave = 0
-augroup END
 
 Plug 'mg979/vim-visual-multi', { 'branch': 'master', 'on': [] }
 augroup load_visual_multi
@@ -337,12 +340,6 @@ Plug 'terryma/vim-expand-region', { 'on': ['<Plug>(expand_region_expand)', '<Plu
 map + <Plug>(expand_region_expand)
 map _ <Plug>(expand_region_shrink)
 
-if has('python3')
-  Plug 'vim-autoformat/vim-autoformat', { 'on': ['Autoformat'] }
-else
-  Plug 'sbdchd/neoformat', { 'on': ['Neoformat'] }
-endif
-
 Plug 'liuchengxu/vista.vim', { 'on': ['Vista'] }
 let g:vista_default_executive = 'vim_lsp'
 
@@ -382,57 +379,61 @@ let g:which_key_map.g = { 'name': '+Goto' }
 let g:which_key_map.w = { 'name': '+Window' }
 autocmd! User vim-which-key call which_key#register('<Space>', 'g:which_key_map')
 
-if v:version > 900 && executable('node')
-  Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-endif
+" LSP
+Plug 'prabirshrestha/asyncomplete.vim', { 'on': [] }
+Plug 'prabirshrestha/asyncomplete-file.vim', { 'on': [] }
+Plug 'prabirshrestha/asyncomplete-buffer.vim', { 'on': [] }
+Plug 'prabirshrestha/asyncomplete-lsp.vim', { 'on': [] }
+Plug 'prabirshrestha/vim-lsp', { 'on': [] }
+Plug 'hrsh7th/vim-vsnip', { 'on': [] }
+Plug 'hrsh7th/vim-vsnip-integ', { 'on': [] }
+Plug 'mattn/vim-lsp-settings', { 'on': [] }
+function! s:on_lsp_buffer_enabled() abort
+  setlocal omnifunc=lsp#complete
+  setlocal signcolumn=yes
+  if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+  nmap <buffer> gd <Plug>(lsp-definition)
+  nmap <buffer> [g <Plug>(lsp-previous-diagnostic)
+  nmap <buffer> ]g <Plug>(lsp-next-diagnostic)
+  nmap <buffer> K <Plug>(lsp-hover)
+  nnoremap <buffer> <expr><C-f> lsp#scroll(+4)
+  nnoremap <buffer> <expr><C-d> lsp#scroll(-4)
+  let g:lsp_format_sync_timeout = 1000
+  autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+endfunction
+augroup lsp_install
+  autocmd!
+  autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+augroup load_completion
+  autocmd!
+  autocmd InsertEnter * call plug#load('asyncomplete.vim', 'asyncomplete-file.vim', 'asyncomplete-buffer.vim', 'asyncomplete-lsp.vim', 'vim-lsp', 'vim-vsnip', 'vim-vsnip-integ', 'vim-lsp-settings')
+    \| autocmd! load_completion
+    \| let g:lsp_diagnostics_enabled = 0
+    \| inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : "\<Tab>"
+    \| inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' : "\<S-Tab>"
+    \| inoremap <expr> <CR> pumvisible() ? asyncomplete#close_popup() : "\<CR>"
+    \| call asyncomplete#enable_for_buffer()
+    \| call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({ 'name': 'file', 'allowlist': ['*'], 'priority': 10, 'completor': function('asyncomplete#sources#file#completor') }))
+    \| call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({ 'name': 'buffer', 'allowlist': ['*'], 'blocklist': ['go'], 'completor': function('asyncomplete#sources#buffer#completor'), 'config': { 'max_buffer_size': 50000 } }))
+    \| call lsp#enable()
+    \| if executable('clangd') | call lsp#register_server({ 'name': 'clangd', 'cmd': { server_info -> [ 'clangd', '-background-index' ] }, 'whitelist': ['c', 'cpp', 'objc', 'objcpp'] }) | endif
+    \| if executable('basedpyright') | call lsp#register_server({ 'name': 'basedpyright', 'cmd': { server_info -> [ 'basedpyright-langserver', '--stdio' ] }, 'whitelist': ['python'] }) | endif
+    \| if executable('typescript-language-server') | call lsp#register_server({ 'name': 'typescript-language-server', 'cmd': { server_info -> [&shell, &shellcmdflag, 'typescript-language-server --stdio'] }, 'root_uri': { server_info -> lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json')) }, 'whitelist': ['typescript', 'typescript.tsx', 'typescriptreact'] }) | endif
+    \| if executable('typescript-language-server') | call lsp#register_server({ 'name': 'javascript support using typescript-language-server', 'cmd': { server_info -> [&shell, &shellcmdflag, 'typescript-language-server --stdio'] }, 'root_uri': { server_info -> lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.git/..')) }, 'whitelist': ['javascript', 'javascript.jsx', 'javascriptreact'] }) | endif
+augroup END
 
-if !executable('node')
-  Plug 'prabirshrestha/asyncomplete.vim', { 'on': [] }
-  Plug 'prabirshrestha/asyncomplete-file.vim', { 'on': [] }
-  Plug 'prabirshrestha/asyncomplete-buffer.vim', { 'on': [] }
-  Plug 'prabirshrestha/asyncomplete-lsp.vim', { 'on': [] }
-  Plug 'prabirshrestha/vim-lsp', { 'on': [] }
-  Plug 'hrsh7th/vim-vsnip', { 'on': [] }
-  Plug 'hrsh7th/vim-vsnip-integ', { 'on': [] }
-  Plug 'mattn/vim-lsp-settings', { 'on': [] }
-  function! s:on_lsp_buffer_enabled() abort
-    setlocal omnifunc=lsp#complete
-    setlocal signcolumn=yes
-    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-    nmap <buffer> gd <Plug>(lsp-definition)
-    nmap <buffer> [g <Plug>(lsp-previous-diagnostic)
-    nmap <buffer> ]g <Plug>(lsp-next-diagnostic)
-    nmap <buffer> K <Plug>(lsp-hover)
-    nnoremap <buffer> <expr><C-f> lsp#scroll(+4)
-    nnoremap <buffer> <expr><C-d> lsp#scroll(-4)
-    let g:lsp_format_sync_timeout = 1000
-    autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
-  endfunction
-  augroup lsp_install
-    autocmd!
-    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-  augroup END
-  augroup load_completion
-    autocmd!
-    autocmd InsertEnter * call plug#load('asyncomplete.vim', 'asyncomplete-file.vim', 'asyncomplete-buffer.vim', 'asyncomplete-lsp.vim', 'vim-lsp', 'vim-vsnip', 'vim-vsnip-integ', 'vim-lsp-settings')
-      \| autocmd! load_completion
-      \| let g:lsp_diagnostics_enabled = 0
-      \| inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : "\<Tab>"
-      \| inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' : "\<S-Tab>"
-      \| inoremap <expr> <CR> pumvisible() ? asyncomplete#close_popup() : "\<CR>"
-      \| call asyncomplete#enable_for_buffer()
-      \| call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({ 'name': 'file', 'allowlist': ['*'], 'priority': 10, 'completor': function('asyncomplete#sources#file#completor') }))
-      \| call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({ 'name': 'buffer', 'allowlist': ['*'], 'blocklist': ['go'], 'completor': function('asyncomplete#sources#buffer#completor'), 'config': { 'max_buffer_size': 5000000 } }))
-      \| call lsp#enable()
-      \| if executable('clangd') | call lsp#register_server({ 'name': 'clangd', 'cmd': { server_info -> [ 'clangd', '-background-index' ] }, 'whitelist': ['c', 'cpp', 'objc', 'objcpp'] }) | endif
-      \| if executable('basedpyright') | call lsp#register_server({ 'name': 'basedpyright', 'cmd': { server_info -> [ 'basedpyright-langserver', '--stdio' ] }, 'whitelist': ['python'] }) | endif
-      \| if executable('typescript-language-server') | call lsp#register_server({ 'name': 'typescript-language-server', 'cmd': { server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio'] }, 'root_uri': { server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json')) }, 'whitelist': ['javascript', 'typescript', 'javascript.tsx', 'typescript.tsx', 'javascriptreact', 'typescriptreact'] })
-  augroup END
-endif
-
+" DAP
 if has('python3')
   Plug 'puremourning/vimspector', { 'on': ['<Plug>VimspectorContinue', '<Plug>VimspectorStop', '<Plug>VimspectorRestart', '<Plug>VimspectorBreakpoints', '<Plug>VimspectorToggleBreakpoint', '<Plug>VimspectorJumpToNextBreakpoint', '<Plug>VimspectorJumpToPreviousBreakpoint'] }
   let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
+endif
+
+" FORMATTER
+if has('python3')
+  Plug 'vim-autoformat/vim-autoformat', { 'on': ['Autoformat'] }
+else
+  Plug 'sbdchd/neoformat', { 'on': ['Neoformat'] }
 endif
 
 call plug#end()
