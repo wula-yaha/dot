@@ -87,25 +87,6 @@ augroup load_ale
 augroup END
 
 " UI
-Plug 'mhinz/vim-startify', { 'on': [] }
-augroup load_startify
-  autocmd!
-  autocmd BufEnter * call plug#load('vim-startify') | autocmd! load_startify
-    \| let g:startify_files_number = 20
-    \| let g:startify_custom_header = [
-    \ '',
-    \ '',
-    \ '  ██╗   ██╗ ██╗ ███╗   ███╗  ',
-    \ '  ██║   ██║ ██║ ████╗ ████║  ',
-    \ '  ██║   ██║ ██║ ██╔████╔██║  ',
-    \ '  ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║  ',
-    \ '   ╚████╔╝  ██║ ██║ ╚═╝ ██║  ',
-    \ '    ╚═══╝   ╚═╝ ╚═╝     ╚═╝  ',
-    \ '',
-    \ '',
-    \]
-augroup END
-
 Plug 'tpope/vim-sensible', { 'on': [] }
 augroup load_sensible
   autocmd!
@@ -190,31 +171,11 @@ augroup load_better_whitespace
     \| highlight link ExtraWhitespace Cursor
 augroup END
 
-Plug 'blueyed/vim-diminactive', { 'on': [] }
-augroup load_diminactive
-  autocmd!
-  autocmd BufReadPost * call plug#load('vim-diminactive') | autocmd! load_diminactive
-    \| let g:diminactive_use_colorcolumn = 0
-    \| let g:diminactive_use_syntax = 1
-augroup END
-
 " TOOL
 Plug 'andymass/vim-matchup', { 'on': [] }
 augroup load_matchup
   autocmd!
   autocmd BufReadPost * call plug#load('vim-matchup') | autocmd! load_matchup
-augroup END
-
-Plug 'tpope/vim-surround', { 'on': [] }
-augroup load_surround
-  autocmd!
-  autocmd BufReadPost * call plug#load('vim-surround') | autocmd! load_surround
-augroup END
-
-Plug 'romainl/vim-cool', { 'on': [] }
-augroup load_vim_cool
-  autocmd!
-  autocmd BufReadPost * call plug#load('vim-cool') | autocmd! load_vim_cool
 augroup END
 
 Plug 'airblade/vim-gitgutter', { 'on': [] }
@@ -236,26 +197,6 @@ augroup load_commentary
   autocmd BufReadPre * call plug#load('vim-commentary') | autocmd! load_commentary
 augroup END
 
-Plug 'justinmk/vim-sneak', { 'on': [] }
-augroup load_sneak
-  autocmd!
-  autocmd BufReadPre * call plug#load('vim-sneak') | autocmd! load_sneak
-augroup END
-
-if v:version < 903
-  Plug 'editorconfig/editorconfig-vim', { 'on': [] }
-  augroup load_editorconfig
-    autocmd!
-    autocmd BufReadPre * call plug#load('editorconfig-vim') | autocmd! load_editorconfig
-  augroup END
-endif
-
-Plug 'mg979/vim-visual-multi', { 'branch': 'master', 'on': [] }
-augroup load_visual_multi
-  autocmd!
-  autocmd BufReadPost * call plug#load('vim-visual-multi') | autocmd! load_visual_multi
-augroup END
-
 Plug 'kana/vim-textobj-user', { 'on': [] }
 Plug 'kana/vim-textobj-indent', { 'on': [] }
 Plug 'kana/vim-textobj-line', { 'on': [] }
@@ -264,12 +205,6 @@ Plug 'wellle/targets.vim', { 'on': [] }
 augroup load_textobj
   autocmd!
   autocmd BufReadPost * call plug#load('vim-textobj-user', 'vim-textobj-indent', 'vim-textobj-line', 'vim-textobj-comment', 'targets.vim') | autocmd! load_textobj
-augroup END
-
-Plug 'psliwka/vim-smoothie', { 'on': [] }
-augroup load_smoothie
-  autocmd!
-  autocmd BufReadPost * call plug#load('vim-smoothie') | autocmd! load_smoothie
 augroup END
 
 Plug 'LunarWatcher/auto-pairs', { 'on': [] }
@@ -300,27 +235,6 @@ nnoremap <Leader>tn :NERDTreeToggle<CR>
 Plug 'mbbill/undotree', { 'on': ['UndotreeToggle'] }
 nnoremap <Leader>tu :UndotreeToggle<CR>
 
-Plug 'dstein64/vim-startuptime', { 'on': ['StartupTime'] }
-nnoremap <Leader>tt :StartupTime<CR>
-
-Plug 't9md/vim-choosewin', { 'on': ['<Plug>(choosewin)'] }
-let g:choosewin_overlay_enable = 1
-nnoremap <Leader>wo <Plug>(choosewin)
-nnoremap <C-x>o <Plug>(choosewin)
-
-Plug 'thinca/vim-quickrun', { 'on': ['QuickRun'] }
-nnoremap <Leader>tr :QuickRun<CR>
-
-Plug 'mtth/scratch.vim', { 'on': ['Scratch'] }
-nnoremap <Leader>ts :Scratch<CR>
-
-Plug 'matze/vim-move', { 'on': ['<Plug>MoveBlockDown', '<Plug>MoveBlockUp', '<Plug>MoveBlockRight', '<Plug>MoveBlockLeft'] }
-let g:move_key_modifier_visualmode = 'S'
-vnoremap <silent> <S-j> <Plug>MoveBlockDown
-vnoremap <silent> <S-k> <Plug>MoveBlockUp
-vnoremap <silent> <S-h> <Plug>MoveBlockLeft
-vnoremap <silent> <S-l> <Plug>MoveBlockRight
-
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim', { 'on': ['Files', 'Buffers', 'Colors', 'Rg', 'Lines', 'BLines', 'History'] }
 Plug 'pbogut/fzf-mru.vim', { 'on' : ['FZFMru'] }
@@ -336,37 +250,8 @@ nnoremap <Leader>fs :BLines<CR>
 nnoremap <Leader>fS :Lines<CR>
 nnoremap <Leader>fm :FZFMru<CR>
 
-Plug 'terryma/vim-expand-region', { 'on': ['<Plug>(expand_region_expand)', '<Plug>(expand_region_shrink)'] }
-map + <Plug>(expand_region_expand)
-map _ <Plug>(expand_region_shrink)
-
 Plug 'liuchengxu/vista.vim', { 'on': ['Vista'] }
 let g:vista_default_executive = 'vim_lsp'
-
-Plug 'voldikss/vim-floaterm', { 'on': ['FloatermNew', 'FloatermPrev', 'FloatermNext', 'FloatermToggle'] }
-let g:floaterm_width = 0.8
-let g:floaterm_height = 0.8
-let g:floaterm_wintype = 'split'
-let g:floaterm_position = 'botright'
-nnoremap <silent> <F7> :FloatermNew<CR>
-tnoremap <silent> <F7> <C-\><C-n>:FloatermNew<CR>
-nnoremap <silent> <F8> :FloatermPrev<CR>
-tnoremap <silent> <F8> <C-\><C-n>:FloatermPrev<CR>
-nnoremap <silent> <F9> :FloatermNext<CR>
-tnoremap <silent> <F9> <C-\><C-n>:FloatermNext<CR>
-nnoremap <silent> <F12> :FloatermToggle<CR>
-tnoremap <silent> <F12> <C-\><C-n>:FloatermToggle<CR>
-
-Plug 'jpalardy/vim-slime', { 'on': ['SlimeConfig'] }
-Plug 'dyng/ctrlsf.vim', { 'on': ['CtrlSF'] }
-Plug 'metakirby5/codi.vim', { 'on': ['Codi', 'CodiNew', 'CodiSelect', 'CodiExpand'] }
-Plug 'skywind3000/asyncrun.vim', { 'on': ['AsyncRun'] }
-Plug 'vim-test/vim-test', { 'on': ['TestNearest', 'TestFile', 'TestSuite', 'TestLast', 'TestVisit'] }
-Plug 'jalvesaq/Vim-R', { 'on': ['R'] }
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': ['go'] }
-Plug 'mattn/emmet-vim', { 'for': ['html'] }
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'], 'on': ['MarkdownPreview'] }
-Plug 'tpope/vim-fugitive', { 'on': ['Git', 'G'] }
 
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 nnoremap <silent> <leader> :<C-u>WhichKey '<Space>'<CR>
@@ -422,18 +307,5 @@ augroup load_completion
     \| if executable('typescript-language-server') | call lsp#register_server({ 'name': 'typescript-language-server', 'cmd': { server_info -> [&shell, &shellcmdflag, 'typescript-language-server --stdio'] }, 'root_uri': { server_info -> lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json')) }, 'whitelist': ['typescript', 'typescript.tsx', 'typescriptreact'] }) | endif
     \| if executable('typescript-language-server') | call lsp#register_server({ 'name': 'javascript support using typescript-language-server', 'cmd': { server_info -> [&shell, &shellcmdflag, 'typescript-language-server --stdio'] }, 'root_uri': { server_info -> lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.git/..')) }, 'whitelist': ['javascript', 'javascript.jsx', 'javascriptreact'] }) | endif
 augroup END
-
-" DAP
-if has('python3')
-  Plug 'puremourning/vimspector', { 'on': ['<Plug>VimspectorContinue', '<Plug>VimspectorStop', '<Plug>VimspectorRestart', '<Plug>VimspectorBreakpoints', '<Plug>VimspectorToggleBreakpoint', '<Plug>VimspectorJumpToNextBreakpoint', '<Plug>VimspectorJumpToPreviousBreakpoint'] }
-  let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
-endif
-
-" FORMATTER
-if has('python3')
-  Plug 'vim-autoformat/vim-autoformat', { 'on': ['Autoformat'] }
-else
-  Plug 'sbdchd/neoformat', { 'on': ['Neoformat'] }
-endif
 
 call plug#end()

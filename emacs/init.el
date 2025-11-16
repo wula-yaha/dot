@@ -246,14 +246,6 @@
           (nix . ("https://github.com/nix-community/nix-ts-mode"))
           (mojo . ("https://github.com/HerringtonDarkholme/tree-sitter-mojo")))))
 
-(use-package uniquify
-  :ensure nil
-  :config
-  (setq uniquify-buffer-name-style 'reverse)
-  (setq uniquify-separator " • ")
-  (setq uniquify-after-kill-buffer-p t)
-  (setq uniquify-ignore-buffers-re "^\\*"))
-
 ;;; EVIL
 (use-package evil
   :init (setq evil-want-keybinding nil)
@@ -328,9 +320,6 @@
   :config
   (setq evil-goggles-duration 0.500))
 
-(use-package evil-surround
-  :hook (evil-mode . evil-surround-mode))
-
 (use-package evil-args
   :after evil
   :bind
@@ -357,43 +346,13 @@
         ("I" . evil-indent-plus-a-indent-up)
         ("J" . evil-indent-plus-a-indent-up-down)))
 
-(use-package evil-snipe
-  :hook
-  (evil-mode . evil-snipe-mode)
-  (evil-mode . evil-snipe-override-mode)
-  :config
-  (setq evil-snipe-scope 'whole-buffer)
-  (setq evil-snipe-repeat-scope 'whole-buffer))
-
 ;;; UI
-(use-package dashboard
-  :hook (after-init . dashboard-setup-startup-hook)
-  :config
-  (setq dashboard-startup-banner 'logo)
-  (setq dashboard-center-content t)
-  (setq dashboard-vertically-center-content t)
-  (setq dashboard-navigation-cycle t)
-  (setq dashboard-show-shortcuts t)
-  (setq dashboard-display-icons-p t)
-  (setq dashboard-icon-type 'nerd-icons)
-  (setq dashboard-set-heading-icons t)
-  (setq dashboard-set-file-icons t)
-  (setq dashboard-icon-file-height 1.75)
-  (setq dashboard-icon-file-v-adjust -0.125)
-  (setq dashboard-heading-icon-height 1.75)
-  (setq dashboard-heading-icon-v-adjust -0.125))
-
 (use-package doom-themes
   :hook (after-init . (lambda () (load-theme 'doom-one t)))
   :config
   (setq doom-themes-enable-bold t)
   (setq doom-themes-enable-italic t)
   (doom-themes-visual-bell-config))
-
-(use-package solaire-mode
-  :defer 5
-  :config
-  (solaire-global-mode))
 
 (use-package doom-modeline
   :hook (after-init . doom-modeline-mode)
@@ -402,12 +361,6 @@
   (setq doom-modeline-bar-width 5)
   (setq doom-modeline-enable-word-count nil)
   (setq doom-modeline-minor-modes t))
-
-(use-package hide-mode-line
-  :hook
-  (neotree-mode . hide-mode-line-mode)
-  (shell-mode . hide-mode-line-mode)
-  (eshell-mode . hide-mode-line-mode))
 
 (use-package minions
   :hook (doom-modeline-mode . minions-mode))
@@ -449,28 +402,6 @@
   (setq centaur-tabs-icon-type 'nerd-icons)
   (setq centaur-tabs-set-bar 'left))
 
-(use-package beacon
-  :hook (after-init . beacon-mode)
-  :config
-  (setq beacon-size 60)
-  (setq beacon-color (face-attribute 'nerd-icons-red :foreground))
-  (setq beacon-blink-duration 0.6)
-  (setq beacon-blink-delay 0.6)
-  (setq beacon-blink-when-window-scrolls t)
-  (setq beacon-blink-when-window-changes t)
-  (setq beacon-blink-when-point-moves t)
-  (setq beacon-blink-when-point-moves-vertically 6)
-  (setq beacon-blink-when-point-moves-horizontally 6))
-
-(use-package which-key-posframe
-  :when (display-graphic-p)
-  :hook (which-key-mode . which-key-posframe-mode)
-  :custom-face
-  (which-key-posframe-border ((t (:inherit cursor :background unspecified :foreground unspecified))))
-  :config
-  (setq which-key-posframe-poshandler 'posframe-poshandler-window-center)
-  (setq which-key-posframe-parameters '((left-fringe . 12) (right-fringe . 12))))
-
 ;;; TOOL
 (use-package avy
   :bind
@@ -483,9 +414,6 @@
   (prog-mode . global-diff-hl-mode)
   (prog-mode . global-diff-hl-show-hunk-mouse-mode)
   (dired-mode . diff-hl-dired-mode))
-
-(use-package eldoc-mouse
-  :hook ((eglot-managed-mode emacs-lisp-mode) . eldoc-mouse-mode))
 
 (use-package hl-todo
   :hook ((prog-mode yaml-mode) . hl-todo-mode)
@@ -542,9 +470,6 @@
 (use-package winum
   :hook (doom-modeline-mode . winum-mode))
 
-(use-package expand-region
-  :bind ("C-=" . er/expand-region))
-
 (use-package exec-path-from-shell
   :when (memq window-system '(mac ns x))
   :defer 5
@@ -556,52 +481,11 @@
   :config
   (setq neo-theme 'nerd-icons))
 
-(use-package quickrun
-  :commands (quickrun)
-  :config
-  (setq quickrun-focus-p nil)
-  (setq quickrun-truncate-lines nil))
-
 (use-package vundo
   :commands vundo)
 
-(use-package esup
-  :commands esup
-  :config
-  (setq esup-depth 0))
-
-(use-package benchmark-init)
-
-(use-package minimap
-  :commands minimap-mode
-  :config
-  (setq minimap-window-location 'right)
-  (setq minimap-minimum-width 10)
-  (setq minimap-update-delay 0.3)
-  (setq minimap-width-fraction 0.13))
-
-(use-package writeroom-mode
-  :commands writeroom-mode
-  :config
-  (setq split-width-threshold 120)
-  (setq writeroom-width 128)
-  (setq writeroom-bottom-divider-width 0)
-  (setq writeroom-fringes-outside-margins t))
-
 (use-package eat
   :commands eat)
-
-(use-package scratch
-  :commands scratch)
-
-(use-package eshell-syntax-highlighting
-  :hook (eshell-mode . eshell-syntax-highlighting-global-mode))
-
-(use-package esh-autosuggest
-  :hook (eshell-mode . esh-autosuggest-mode))
-
-(use-package magit
-  :commands magit)
 
 ;;; COMPLETION
 (use-package ivy
@@ -609,19 +493,10 @@
   :config
   (setq ivy-use-virutal-buffers t)
   (setq enable-recursive-minibuffers t)
-  (setq ivy-height (cond ((display-graphic-p) 20) (t 13)))
+  (setq ivy-height 13)
   (setq ivy-initial-inputs-alist nil)
   (setq ivy-count-format "[%d/%d]")
   (setq ivy-re-builders-alist `((t . ivy--regex-ignore-order))))
-
-(use-package ivy-posframe
-  :when (display-graphic-p)
-  :hook (ivy-mode . ivy-posframe-mode)
-  :custom-face
-  (ivy-posframe-border ((t (:inherit cursor :background unspecified :foreground unspecified))))
-  :config
-  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-window-center)))
-  (setq ivy-posframe-parameters '((left-fringe . 12) (right-fringe . 12))))
 
 (use-package counsel
   :hook (ivy-mode . counsel-mode)
@@ -675,10 +550,6 @@
   :when (display-graphic-p)
   :hook (company-mode . company-quickhelp-mode))
 
-(use-package company-posframe
-  :when (display-graphic-p)
-  :hook (company-mode . company-posframe-mode))
-
 (use-package yasnippet
   :hook (prog-mode . yas-minor-mode))
 
@@ -698,22 +569,12 @@
 (use-package uv-mode
   :hook (python-mode . uv-mode))
 
-(use-package cmake-mode)
-(use-package clojure-mode)
 (use-package csv-mode)
 (use-package dotenv-mode)
 (use-package json-mode)
 (use-package toml-mode)
 (use-package markdown-mode)
 (use-package yaml-mode)
-(use-package vimrc-mode)
-(use-package nix-mode)
-(use-package web-mode)
-(use-package emmet-mode)
-(use-package typescript-mode)
-(use-package go-mode)
-(use-package rust-mode)
-(use-package powershell)
 
 ;;; SYNTAX CHECKING
 (use-package flycheck
@@ -722,23 +583,11 @@
   (("M-n" . flycheck-next-error)
    ("M-p" . flycheck-previous-error)))
 
-(use-package flycheck-posframe
-  :when (display-graphic-p)
-  :hook (flycheck-mode . flycheck-posframe-mode)
-  :custom-face
-  (flycheck-posframe-border-face ((t (:inherit nerd-icons-red :background unspecified :foreground unspecified))))
-  :config
-  (setq flycheck-posframe-border-width 1))
-
 ;;; LSP & DAP
 (use-package lsp-mode)
 (use-package lsp-ui)
 (use-package dap-mode)
 (use-package dape)
-
-;;; FORMATTER
-(use-package format-all
-  :commands format-all-mode)
 
 (provide 'init)
 ;;; init.el ends here
