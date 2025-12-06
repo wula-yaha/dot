@@ -1,0 +1,28 @@
+[
+    // Built-In
+    {
+        "key": "ctrl+shift+t",
+        "command": "workbench.action.createTerminalEditor"
+    },
+    // VSCodeVim
+    {
+        "key": "ctrl+h",
+        "command": "workbench.action.focusLeftGroup",
+        "when": "vim.active && vim.mode == 'Normal'"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.focusRightGroup",
+        "when": "vim.active && vim.mode == 'Normal'"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "workbench.action.focusBelowGroup",
+        "when": "vim.active && vim.mode == 'Normal'"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "workbench.action.focusAboveGroup",
+        "when": "vim.active && vim.mode == 'Normal'"
+    }
+]

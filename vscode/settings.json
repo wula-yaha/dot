@@ -1,0 +1,25 @@
+{
+    // Built-In
+    "editor.fontFamily": "JetBrainsMono Nerd Font",
+    "editor.fontSize": 14.0,
+    "editor.guides.bracketPairs": true,
+    "editor.lineHeight": 1.618,
+    "editor.minimap.enabled": false,
+    "extensions.experimental.affinity": {
+        "vscodevim.vim": 1
+    },
+    "window.zoomLevel": -0.56,
+    // VSCodeVim
+    "vim.highlightedyank.enable": true,
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "j",
+                "k"
+            ],
+            "after": [
+                "<Esc>"
+            ]
+        }
+    ]
+}
