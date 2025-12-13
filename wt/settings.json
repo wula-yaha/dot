@@ -1,0 +1,78 @@
+{
+    "$help": "https://aka.ms/terminal-documentation",
+    "$schema": "https://aka.ms/terminal-profiles-schema",
+    "actions": [
+        {
+            "command": "copy",
+            "keys": "ctrl+shift+c"
+        },
+        {
+            "command": "paste",
+            "keys": "ctrl+shift+v"
+        },
+    ],
+    "defaultProfile": "{96cba0a6-05df-49c9-974a-a718d7b9976f}",
+    "profiles": {
+        "defaults": {},
+        "list": [
+            {
+                "antialiasingMode": "cleartype",
+                "colorScheme": "Tomorrow Night Bright",
+                "commandline": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "cursorShape": "filledBox",
+                "experimental.retroTerminalEffect": false,
+                "font": {
+                    "face": "JetBrainsMono Nerd Font",
+                    "size": 9
+                },
+                "guid": "{96cba0a6-05df-49c9-974a-a718d7b9976f}",
+                "intenseTextStyle": "all",
+                "name": "WindowsTerminal",
+                "padding": "12",
+                "startingDirectory": "%USERPROFILE%",
+            },
+        ]
+    },
+    "schemes": [
+        {
+            "name": "Tomorrow Night Bright",
+            "black": "#000000",
+            "red": "#d54e53",
+            "green": "#b9ca4a",
+            "yellow": "#e7c547",
+            "blue": "#7aa6da",
+            "purple": "#c397d8",
+            "cyan": "#70c0b1",
+            "white": "#ffffff",
+            "brightBlack": "#666666",
+            "brightRed": "#d54e53",
+            "brightGreen": "#b9ca4a",
+            "brightYellow": "#e7c547",
+            "brightBlue": "#7aa6da",
+            "brightPurple": "#c397d8",
+            "brightCyan": "#70c0b1",
+            "brightWhite": "#ffffff",
+            "background": "#000000",
+            "foreground": "#eaeaea",
+            "selectionBackground": "#424242",
+            "cursorColor": "#eaeaea"
+        },
+    ],
+    "themes": [
+        {
+            "name": "Tomorrow Night Bright",
+            "tab": {
+                "background": "#000000",
+                "showCloseButton": "always",
+                "unfocusedBackground": null
+            },
+            "tabRow": {
+                "background": "#000000",
+                "unfocusedBackground": "#000000"
+            },
+            "window": {
+                "applicationTheme": "dark"
+            }
+        }
+    ]
+}

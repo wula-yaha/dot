@@ -1,0 +1,13 @@
+* My Dotfiles
+
+** Darwin/Linux/BSD
+
+#+begin_src sh
+  sh ~/dot/install.sh
+#+end_src
+
+** Windows
+
+#+begin_src posh
+  .\install.ps1
+#+end_src
