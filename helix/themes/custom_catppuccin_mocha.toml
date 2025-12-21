@@ -1,0 +1,4 @@
+inherits = "catppuccin_mocha"
+
+"ui.background" = { bg = "#11111b" }
+"ui.linenr.selected" = { fg = "#a6e3a1", modifiers = ["bold"] }
