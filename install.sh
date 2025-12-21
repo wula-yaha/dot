@@ -12,15 +12,15 @@ detect_os() {
 		detected_os="WSL"
 	else
 		case "$(uname -s)" in
-		Linux)
-			detected_os="Linux"
-			;;
-		Darwin)
-			detected_os="macOS"
-			;;
-		*BSD)
-			detected_os="BSD"
-			;;
+			Linux)
+				detected_os="Linux"
+				;;
+			Darwin)
+				detected_os="macOS"
+				;;
+			*BSD)
+				detected_os="BSD"
+				;;
 		esac
 	fi
 	echo "$detected_os"
@@ -30,72 +30,90 @@ link_file() {
 	source=$1
 	destination=$2
 
-	# Source file existence checking
-	if [ ! -e "$source" ]; then
-		echo "$source not found, skipping: $source" >&2
-		return 0
-	fi
-
-	# Parent directory existence checking
-	mkdir -p "$(dirname "$destination")"
-
-	# If the destination path is already occupied, back up
-	# the existing item unless it is already the correct symbolic link.
-	if [ -L "$destination" ]; then
-		current_target=$(readlink "$destination")
-		if [ "$current_target" = "$source" ]; then
-			echo "$destination is already linked to the correct file."
+		# Source file existence checking
+		if [ ! -e "$source" ]; then
+			echo "$source not found, skipping: $source" >&2
 			return 0
 		fi
-	fi
-	if [ -e "$destination" ] && [ ! -L "$destination" ]; then
-		timestamp=$(date +'%Y%m%d-%H%M%S')
-		backup="${destination}.bak.${timestamp}"
-		echo "Backup: $destination -> $backup"
-		mv "$destination" "$backup"
-	fi
 
-	# Softlink creating
-	echo "Link $destination -> $source"
-	ln -snf "$source" "$destination"
-}
+		# Parent directory existence checking
+		mkdir -p "$(dirname "$destination")"
 
-main() {
+		# If the destination path is already occupied, back up
+		# the existing item unless it is already the correct symbolic link.
+		if [ -L "$destination" ]; then
+			current_target=$(readlink "$destination")
+			if [ "$current_target" = "$source" ]; then
+				echo "$destination is already linked to the correct file."
+				return 0
+			fi
+		fi
+		if [ -e "$destination" ] && [ ! -L "$destination" ]; then
+			timestamp=$(date +'%Y%m%d-%H%M%S')
+			backup="${destination}.bak.${timestamp}"
+			echo "Backup: $destination -> $backup"
+			mv "$destination" "$backup"
+		fi
 
-	os=$(detect_os)
+		# Softlink creating
+		echo "Link $destination -> $source"
+		ln -snf "$source" "$destination"
+	}
 
-	# Alacritty
-	link_file "$dotdir/alacritty/alacritty.toml" "$HOME/.config/alacritty/alacritty.toml"
+	main() {
 
-	# Emacs
-	link_file "$dotdir/emacs/early-init.el" "$HOME/.emacs.d/early-init.el"
-	link_file "$dotdir/emacs/init.el" "$HOME/.emacs.d/init.el"
+		os=$(detect_os)
 
-	# Helix
-	link_file "$dotdir/helix/config.toml" "$HOME/.config/helix/config.toml"
-	link_file "$dotdir/helix/themes" "$HOME/.config/helix/themes"
+		# Terminal.app
+		if [ "$os" = "macOS" ] && [ -f "$dotdir/AppleTerminal/com.apple.Terminal.plist" ]; then
+			defaults import com.apple.Terminal "$dotdir/AppleTerminal/com.apple.Terminal.plist"
+		fi
 
-	# kitty
-	link_file "$dotdir/kitty/kitty.conf" "$HOME/.config/kitty/kitty.conf"
+		# Alacritty
+		link_file "$dotdir/alacritty/alacritty.toml" "$HOME/.config/alacritty/alacritty.toml"
 
-	# Neovim
-	link_file "$dotdir/nvim/init.lua" "$HOME/.config/nvim/init.lua"
+		# Emacs
+		link_file "$dotdir/emacs/early-init.el" "$HOME/.emacs.d/early-init.el"
+		link_file "$dotdir/emacs/init.el" "$HOME/.emacs.d/init.el"
 
-	# Vim
-	link_file "$dotdir/vim/init.vim" "$HOME/.vim/vimrc"
+		# Ghostty
+		if [ "$os" = "macOS" ]; then
+			link_file "$dotdir/ghostty/config" "$HOME/Library/Application Support/com.mitchellh.ghostty/config"
+		else
+			link_file "$dotdir/ghostty/config" "$HOME/.config/ghostty/config"
+		fi
 
-	# VSCode
-	if [ "$os" = "macOS" ]; then
-		link_file "$dotdir/vscode/settings.json" "$HOME/Library/Application Support/Code/User/settings.json"
-		link_file "$dotdir/vscode/keybindings.json" "$HOME/Library/Application Support/Code/User/keybindings.json"
-	else
-		link_file "$dotdir/vscode/settings.json" "$HOME/.config/Code/User/settings.json"
-		link_file "$dotdir/vscode/keybindings.json" "$HOME/.config/Code/User/keybindings.json"
-	fi
+		# Helix
+		link_file "$dotdir/helix/config.toml" "$HOME/.config/helix/config.toml"
+		link_file "$dotdir/helix/themes" "$HOME/.config/helix/themes"
 
-	# WezTerm
-	link_file "$dotdir/wezterm/wezterm.lua" "$HOME/.config/wezterm/wezterm.lua"
+		# iTerm2
+		if [ "$os" = "macOS" ]; then
+			defaults write com.googlecode.iterm2 "PrefsCustomFolder" -string "$dotdir/iterm2"
+			defaults write com.googlecode.iterm2 "LoadPrefsFromCustomFolder" -bool true
+		fi
 
-}
+		# kitty
+		link_file "$dotdir/kitty/kitty.conf" "$HOME/.config/kitty/kitty.conf"
 
-main
+		# Neovim
+		link_file "$dotdir/nvim/init.lua" "$HOME/.config/nvim/init.lua"
+
+		# Vim
+		link_file "$dotdir/vim/init.vim" "$HOME/.vim/vimrc"
+
+		# VSCode
+		if [ "$os" = "macOS" ]; then
+			link_file "$dotdir/vscode/settings.json" "$HOME/Library/Application Support/Code/User/settings.json"
+			link_file "$dotdir/vscode/keybindings.json" "$HOME/Library/Application Support/Code/User/keybindings.json"
+		else
+			link_file "$dotdir/vscode/settings.json" "$HOME/.config/Code/User/settings.json"
+			link_file "$dotdir/vscode/keybindings.json" "$HOME/.config/Code/User/keybindings.json"
+		fi
+
+		# WezTerm
+		link_file "$dotdir/wezterm/wezterm.lua" "$HOME/.config/wezterm/wezterm.lua"
+
+	}
+
+	main
