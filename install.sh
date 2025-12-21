@@ -72,6 +72,16 @@ link_file() {
 		# Alacritty
 		link_file "$dotdir/alacritty/alacritty.toml" "$HOME/.config/alacritty/alacritty.toml"
 
+		# Aerospace
+		if [ "$os" = "macOS" ]; then
+			link_file "$dotdir/aerospace/aerospace.toml" "$HOME/.config/aerospace/aerospace.toml"
+		fi
+
+		# Borders
+		if [ "$os" = "macOS" ]; then
+			link_file "$dotdir/borders/bordersrc" "$HOME/.config/borders/bordersrc"
+		fi
+
 		# Emacs
 		link_file "$dotdir/emacs/early-init.el" "$HOME/.emacs.d/early-init.el"
 		link_file "$dotdir/emacs/init.el" "$HOME/.emacs.d/init.el"
