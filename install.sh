@@ -124,6 +124,10 @@ link_file() {
 		# WezTerm
 		link_file "$dotdir/wezterm/wezterm.lua" "$HOME/.config/wezterm/wezterm.lua"
 
+		# Zed
+		link_file "$dotdir/zed/settings.json" "$HOME/.config/zed/settings.json"
+		link_file "$dotdir/zed/keymap.json" "$HOME/.config/zed/keymap.json"
+
 	}
 
 	main

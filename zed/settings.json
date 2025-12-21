@@ -1,0 +1,48 @@
+{
+    "title_bar": {
+        "show_branch_icon": true,
+    },
+    "languages": {
+        "JSONC": {
+            "tab_size": 4,
+        },
+        "JSON": {
+            "tab_size": 4,
+        },
+        "Python": {
+            "tab_size": 4,
+        },
+    },
+    "show_whitespaces": "trailing",
+    "format_on_save": "on",
+    "indent_guides": {
+        "background_coloring": "indent_aware",
+        "coloring": "indent_aware",
+        "line_width": 3,
+    },
+    "tab_size": 2,
+    "gutter": {
+        "min_line_number_digits": 0,
+    },
+    "relative_line_numbers": "enabled",
+    "drag_and_drop_selection": {
+        "delay": 500,
+    },
+    "hover_popover_delay": 500,
+    "horizontal_scroll_margin": 5.0,
+    "vertical_scroll_margin": 0.0,
+    "minimum_contrast_for_highlights": 45.0,
+    "ui_font_weight": 400.0,
+    "buffer_line_height": "standard",
+    "buffer_font_weight": 500.0,
+    "telemetry": {
+        "diagnostics": false,
+        "metrics": false,
+    },
+    "vim_mode": true,
+    "base_keymap": "Emacs",
+    "icon_theme": "Zed (Default)",
+    "ui_font_size": 13,
+    "buffer_font_size": 12.0,
+    "theme": "One Dark",
+}

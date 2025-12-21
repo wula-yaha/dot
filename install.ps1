@@ -56,7 +56,6 @@ function Main {
 
     $DotDir = $PSScriptRoot
 
-    # Creating key-value mapping and use loop to create softlink
     $LinkMap = @{
 
         # Alacritty
@@ -85,6 +84,10 @@ function Main {
 
         # WindowsTerminal
         (Join-Path (Join-Path $DotDir "WindowsTerminal") "settings.json") = (Join-Path (Join-Path (Join-Path (Join-Path $env:LOCALAPPDATA "Packages") "Microsoft.WindowsTerminal_8wekyb3d8bbwe") "LocalState") "settings.json")
+
+        # Zed
+        (Join-Path (Join-Path $DotDir "zed") "settings.json") = (Join-Path (Join-Path $env:APPDATA "Zed") "settings.json")
+        (Join-Path (Join-Path $DotDir "zed") "keymap.json") = (Join-Path (Join-Path $env:APPDATA "Zed") "keymap.json")
 
     }
 
