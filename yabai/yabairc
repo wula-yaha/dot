@@ -1,0 +1,46 @@
+#!/usr/bin/env sh
+
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+yabai -m config external_bar off:40:0
+yabai -m config menubar_opacity 1.0
+yabai -m config mouse_follows_focus off
+yabai -m config focus_follows_mouse off
+yabai -m config display_arrangement_order default
+yabai -m config window_origin_display default
+yabai -m config window_placement second_child
+yabai -m config window_insertion_point focused
+yabai -m config window_zoom_persist on
+yabai -m config window_shadow on
+yabai -m config window_animation_duration 0.0
+yabai -m config window_animation_easing ease_out_circ
+yabai -m config window_opacity_duration 0.0
+yabai -m config active_window_opacity 1.0
+yabai -m config normal_window_opacity 0.90
+yabai -m config window_opacity on
+yabai -m config insert_feedback_color 0xffd75f5f
+yabai -m config split_ratio 0.55
+yabai -m config split_type auto
+yabai -m config auto_balance off
+yabai -m config top_padding 12
+yabai -m config bottom_padding 12
+yabai -m config left_padding 12
+yabai -m config right_padding 12
+yabai -m config window_gap 06
+yabai -m config layout bsp
+yabai -m config mouse_modifier fn
+yabai -m config mouse_action1 move
+yabai -m config mouse_action2 resize
+yabai -m config mouse_drop_action swap
+yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
+yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
+yabai -m space 1 --display 1
+yabai -m space 2 --display 1
+yabai -m space 3 --display 1
+yabai -m space 4 --display 1
+yabai -m space 5 --display 1
+yabai -m space 6 --display 2
+yabai -m space 7 --display 2
+yabai -m space 8 --display 2
+yabai -m space 9 --display 2
+yabai -m space 10 --display 2

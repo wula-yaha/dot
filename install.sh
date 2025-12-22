@@ -114,6 +114,11 @@ link_file() {
 		# Neovim
 		link_file "$dotdir/nvim/init.lua" "$HOME/.config/nvim/init.lua"
 
+		# skhd
+		if [ "$os" = "macOS" ]; then
+		  link_file "$dotdir/skhd" "$HOME/.config/skhdrc"
+		fi
+
 		# Vim
 		link_file "$dotdir/vim/init.vim" "$HOME/.vim/vimrc"
 
@@ -128,6 +133,11 @@ link_file() {
 
 		# WezTerm
 		link_file "$dotdir/wezterm/wezterm.lua" "$HOME/.config/wezterm/wezterm.lua"
+
+		# yabai
+		if [ "$os" = "macOS" ]; then
+		  link_file "$dotdir/yabai/yabairc" "$HOME/.config/yabai/yabairc"
+		fi
 
 		# Zed
 		link_file "$dotdir/zed/settings.json" "$HOME/.config/zed/settings.json"
