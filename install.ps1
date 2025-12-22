@@ -70,8 +70,8 @@ function Main {
         (Join-Path (Join-Path $DotDir "helix") "themes") = (Join-Path (Join-Path $env:APPDATA "helix") "themes")
 
         # Komorebi
-        (Join-Path (Join-Path $DotDir "komorebi") "komorebi.json") = (Join-Path $env:APPDATA "komorebi.json")
-        (Join-Path (Join-Path $DotDir "komorebi") "komorebi.bar.json") = (Join-Path $env:APPDATA "komorebi.bar.json")
+        (Join-Path (Join-Path $DotDir "komorebi") "komorebi.json") = (Join-Path $env:USERPROFILE "komorebi.json")
+        (Join-Path (Join-Path $DotDir "komorebi") "komorebi.bar.json") = (Join-Path $env:USERPROFILE "komorebi.bar.json")
         
         # Neovim
         (Join-Path (Join-Path $DotDir "nvim") "init.lua") = (Join-Path (Join-Path $env:LOCALAPPDATA "nvim") "init.lua")
