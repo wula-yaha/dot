@@ -65,6 +65,9 @@ function Main {
         (Join-Path (Join-Path $DotDir "emacs") "early-init.el") = (Join-Path (Join-Path $env:APPDATA ".emacs.d") "early-inig.el")
         (Join-Path (Join-Path $DotDir "emacs") "init.el") = (Join-Path (Join-Path $env:APPDATA ".emacs.d") "init.el")
 
+        # GlazeWM
+        (Join-Path (Join-Path (Join-Path $DotDir "glzr") "glazewm") "config.yaml") = (Join-Path (Join-Path (Join-Path $env:USERPROFILE ".glzr") "glazewm") "config.yaml")
+        
         # Helix
         (Join-Path (Join-Path $DotDir "helix") "config.toml") = (Join-Path (Join-Path $env:APPDATA "helix") "config.toml")
         (Join-Path (Join-Path $DotDir "helix") "themes") = (Join-Path (Join-Path $env:APPDATA "helix") "themes")
@@ -91,6 +94,12 @@ function Main {
         
         # WindowsTerminal
         (Join-Path (Join-Path $DotDir "WindowsTerminal") "settings.json") = (Join-Path (Join-Path (Join-Path (Join-Path $env:LOCALAPPDATA "Packages") "Microsoft.WindowsTerminal_8wekyb3d8bbwe") "LocalState") "settings.json")
+
+        # Zebar
+        (Join-Path (Join-Path (Join-Path $DotDir "glzr") "zebar") "settings.json") = (Join-Path (Join-Path (Join-Path $env:USERPROFILE ".glzr") "zebar") "settings.json")
+        (Join-Path (Join-Path (Join-Path (Join-Path $DotDir "glzr") "zebar") "starter") "zpack.json") = (Join-Path (Join-Path (Join-Path (Join-Path $env:USERPROFILE ".glzr") "zebar") "starter") "zpack.json")
+        (Join-Path (Join-Path (Join-Path (Join-Path $DotDir "glzr") "zebar") "starter") "with-glazewm.html") = (Join-Path (Join-Path (Join-Path (Join-Path $env:USERPROFILE ".glzr") "zebar") "starter") "with-glazewm.html")
+        (Join-Path (Join-Path (Join-Path (Join-Path $DotDir "glzr") "zebar") "starter") "styles.css") = (Join-Path (Join-Path (Join-Path (Join-Path $env:USERPROFILE ".glzr") "zebar") "starter") "styles.css")
 
         # Zed
         (Join-Path (Join-Path $DotDir "zed") "settings.json") = (Join-Path (Join-Path $env:APPDATA "Zed") "settings.json")
