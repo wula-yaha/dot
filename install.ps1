@@ -69,6 +69,10 @@ function Main {
         (Join-Path (Join-Path $DotDir "helix") "config.toml") = (Join-Path (Join-Path $env:APPDATA "helix") "config.toml")
         (Join-Path (Join-Path $DotDir "helix") "themes") = (Join-Path (Join-Path $env:APPDATA "helix") "themes")
 
+        # Komorebi
+        (Join-Path (Join-Path $DotDir "komorebi") "komorebi.json") = (Join-Path $env:APPDATA "komorebi.json")
+        (Join-Path (Join-Path $DotDir "komorebi") "komorebi.bar.json") = (Join-Path $env:APPDATA "komorebi.bar.json")
+        
         # Neovim
         (Join-Path (Join-Path $DotDir "nvim") "init.lua") = (Join-Path (Join-Path $env:LOCALAPPDATA "nvim") "init.lua")
 
@@ -82,6 +86,9 @@ function Main {
         # WezTerm
         (Join-Path (Join-Path $DotDir "wezterm") "wezterm.lua") = (Join-Path $env:USERPROFILE ".wezterm.lua")
 
+        # WHKD
+        (Join-Path (Join-Path $DotDir "whkd") "whkdrc") = (Join-Path (Join-Path $env:USERPROFILE ".config") "whkdrc")
+        
         # WindowsTerminal
         (Join-Path (Join-Path $DotDir "WindowsTerminal") "settings.json") = (Join-Path (Join-Path (Join-Path (Join-Path $env:LOCALAPPDATA "Packages") "Microsoft.WindowsTerminal_8wekyb3d8bbwe") "LocalState") "settings.json")
 
