@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Custom styles. -->
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+    <!-- Allows React to be run buildless via "text/babel" script below. -->
+    <script
+      src="https://unpkg.com/@babel/standalone@7.25.6/babel.min.js"
+      integrity="sha256-aS0B0wnsaDByLfE16h4MDCP1fQFccysd1YWOcV+gbBo="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="text/babel" data-type="module">
+      import React, { useState, useEffect } from "https://esm.sh/react@18?dev";
+      import { createRoot } from "https://esm.sh/react-dom@18/client?dev";
+      import * as zebar from 'https://esm.sh/zebar@3.0';
+      const providers = zebar.createProviderGroup({
+        glazewm: {
+          type: "glazewm",
+        },
+        network: {
+          type: "network",
+          refreshInterval: "2000",
+        },
+        cpu: {
+          type: "cpu",
+          refreshInterval: "2000",
+        },
+        memory: {
+          type: "memory",
+          refreshInterval: "2000",
+        },
+        audio: {
+          type: "audio",
+        },
+        battery: {
+          type: "battery",
+          refreshInterval: "10000",
+        },
+        date: {
+          type: "date",
+          formatting: "yyyy-MM-dd hh:mm",
+        },
+      });
+      createRoot(document.getElementById("root")).render(<App />);
+      function App() {
+        const [output, setOutput] = useState(providers.outputMap);
+        useEffect(() => {
+          providers.onOutput(() => setOutput(providers.outputMap));
+        }, []);
+        return (
+          <div className="app">
+            <div className="left">
+              <i className="logo nf nf-custom-windows"></i>
+              {output.glazewm && (
+                <div className="workspaces">
+                  {output.glazewm.currentWorkspaces.map((workspace) => (
+                    <button
+                      className={`workspace ${workspace.hasFocus && "focused"} ${workspace.isDisplayed && "displayed"}`}
+                      onClick={() =>
+                        output.glazewm.runCommand(
+                          `focus --workspace ${workspace.name}`,
+                        )
+                      }
+                      key={workspace.name}
+                    >
+                      {workspace.displayName ?? workspace.name}
+                    </button>
+                  ))}
+                </div>
+              )}
+              {output.glazewm && (
+                <div className="title">
+                  {(() => {
+                    if (output.glazewm.focusedContainer?.type === "window") {
+                      return output.glazewm.focusedContainer.title.length > 80
+                        ? output.glazewm.focusedContainer.title.slice(0, 100) +
+                            "..."
+                        : output.glazewm.focusedContainer.title;
+                    } else {
+                      return " ";
+                    }
+                  })()}
+                </div>
+              )}
+            </div>
+            <div className="center"></div>
+            <div className="right">
+              {output.glazewm && (
+                <>
+                  {output.glazewm.isPaused && (
+                    <button
+                      className="paused-button"
+                      onClick={() =>
+                        output.glazewm.runCommand("wm-toggle-pause")
+                      }
+                    >
+                      <i className="nf nf-fa-pause_circle_o"></i>
+                      pause
+                    </button>
+                  )}
+                  {output.glazewm.bindingModes.map((bindingMode) => (
+                    <button className="binding-mode" key={bindingMode.name}>
+                      <i className="nf nf-fa-recycle"></i>
+                      {bindingMode.displayName ?? bindingMode.name}
+                    </button>
+                  ))}
+                  <button
+                    className={`tiling-direction nf ${output.glazewm.tilingDirection === "horizontal" ? "nf-md-swap_horizontal" : "nf-md-swap_vertical"}`}
+                    onClick={() =>
+                      output.glazewm.runCommand("toggle-tiling-direction")
+                    }
+                  ></button>
+                </>
+              )}
+              {output.cpu && (
+                <div className="cpu">
+                  <i
+                    className={`nf nf-oct-cpu ${output.cpu.usage > 90 ? "high" : output.cpu.usage > 60 ? "medium" : output.cpu.usage > 30 ? "low" : ""}`}
+                  ></i>
+                  <span className="text">{Math.round(output.cpu.usage)}%</span>
+                </div>
+              )}
+              {output.memory && (
+                <div className="memory">
+                  <i
+                    className={`nf nf-oct-stack ${output.memory.usage > 90 ? "high" : output.memory.usage > 60 ? "medium" : output.memory.usage > 30 ? "low" : ""}`}
+                  ></i>
+                  <span className="text">
+                    {Math.round(output.memory.usage)}%
+                  </span>
+                </div>
+              )}
+              {output.audio && (
+                <div className="audio">
+                  <i
+                    className={`nf nf-md-volume_high ${output.audio.defaultPlaybackDevice?.volume > 70 ? "high" : output.audio.defaultPlaybackDevice?.volume > 50 ? "medium" : output.audio.defaultPlaybackDevice?.volume > 20 ? "low" : ""}`}
+                  ></i>
+                  <span className="text">
+                    {Math.round(output.audio.defaultPlaybackDevice?.volume)}%
+                  </span>
+                </div>
+              )}
+              {output.battery && (
+                <div className="battery">
+                  <i
+                    className={`nf nf-md-battery_heart ${output.battery.chargePercent > 90 ? "high" : output.battery.chargePercent > 60 ? "medium" : output.battery.chargePercent > 30 ? "low" : ""}`}
+                  ></i>
+                  <span className="text">
+                    {Math.round(output.battery.chargePercent)}%
+                  </span>
+                </div>
+              )}
+              {output.network && (
+                <div className="network_down">
+                  <i className="nf-fa-circle_down"></i>
+                  {Math.round(output.network.traffic.received.siValue)}
+                  {output.network.traffic.received.siUnit}
+                </div>
+              )}
+              {output.network && (
+                <div className="network_up">
+                  <i className="nf-fa-circle_up"></i>
+                  {Math.round(output.network.traffic.transmitted.siValue)}
+                  {output.network.traffic.transmitted.siUnit}
+                </div>
+              )}
+              {output.date && (
+                <div className="date">
+                  <i className="nf nf-md-calendar_clock"></i>
+                  {output.date?.formatted}
+                </div>
+              )}
+            </div>
+          </div>
+        );
+      }
+    </script>
+  </body>
+</html>
