@@ -77,6 +77,11 @@ link_file() {
 			link_file "$dotdir/aerospace/aerospace.toml" "$HOME/.config/aerospace/aerospace.toml"
 		fi
 
+	    # awesomeWM
+        if [ "$os" = "Linux" ] || [ "$os" = "BSD" ]; then
+			link_file "$dotdir/awesome/rc.lua" "$HOME/.config/awesome/rc.lua"
+		fi
+		
 		# Borders
 		if [ "$os" = "macOS" ]; then
 			link_file "$dotdir/borders/bordersrc" "$HOME/.config/borders/bordersrc"
