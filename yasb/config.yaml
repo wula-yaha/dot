@@ -1,0 +1,200 @@
+watch_stylesheet: true
+watch_config: true
+debug: false
+update_check: false
+bars:
+  primary-bar:
+    enabled: true
+    screens: ["*"]
+    class_name: "yasb-bar"
+    alignment:
+      position: "top"
+      center: false
+    animation:
+      enabled: true
+      duration: 400
+    blur_effect:
+      enabled: false
+      acrylic: false
+      dark_mode: false
+      round_corners: false
+      round_corners_type: "normal"
+      border_color: "system"
+    window_flags:
+      always_on_top: false
+      windows_app_bar: true
+    dimensions:
+      width: "100%"
+      height: 32
+    padding:
+      top: 4
+      left: 4
+      bottom: 4
+      right: 4
+    widgets:
+      left:
+      - "home"
+      - "glazewm_workspaces"
+      - "active_window"
+      center:
+      right:
+      - "cpu"
+      - "memory"
+      - "battery"
+      - "volume"
+      - "clock"
+widgets:
+  # LEFT
+  home:
+    type: "yasb.home.HomeWidget"
+    options:
+      label: "<span>  </span>"
+      menu_list:
+        - { title: "User Home", path: "~" }
+        - { title: "Download", path: "~\\Downloads" }
+        - { title: "Documents", path: "~\\Documents" }
+        - { title: "Pictures", path: "~\\Pictures" }
+      system_menu: true
+      power_menu: true
+      blur: true
+  glazewm_workspaces:
+    type: "glazewm.workspaces.GlazewmWorkspacesWidget"
+    options:
+      offline_label: "GlazeWM Offline"
+      hide_empty_workspaces: true
+      hide_if_offline: true
+      enable_scroll_switching: false
+      btn_shadow:
+        enabled: true
+        color: "black"
+        radius: 3
+        offset: [ 1, 1 ]
+      app_icons: 
+        enabled_populated: false
+        enabled_active: false
+        size: 16
+        max_icons: 0
+        hide_label: false
+        hide_duplicates: false
+        hide_floating: false
+      animation: false
+  active_window:
+    type: "yasb.active_window.ActiveWindowWidget"
+    options:
+      label: "{win[title]}"
+      label_no_window: ""
+      label_icon: true
+      label_icon_size: 12
+      max_length: 60
+      max_length_ellipsis: "..."
+      monitor_exclusive: true
+  # RIGHT
+  cpu:
+    type: "yasb.cpu.CpuWidget"
+    options:
+      label: "<span></span> {info[percent][total]}%"
+      update_interval: 2000
+      cpu_thresholds:
+        low: 25
+        medium: 50
+        high: 90
+      callbacks:
+        on_right: "exec cmd /c Taskmgr"
+      label_shadow:
+        enabled: true
+        color: "black"
+        radius: 3
+        offset: [ 1, 1 ]
+  memory:
+    type: "yasb.memory.MemoryWidget"
+    options:
+      label: "<span></span> {virtual_mem_percent}%"
+      update_interval: 5000
+      callbacks:
+        on_left: "toggle_label"
+        on_middle: "do_nothing"
+        on_right: "do_nothing"
+      memory_thresholds:
+        low: 25
+        medium: 50
+        high: 90
+      label_shadow:
+        enabled: true
+        color: "black"
+        radius: 3
+        offset: [ 1, 1 ]
+  battery:
+    type: "yasb.battery.BatteryWidget"
+    options:
+      label: "<span>{icon}</span> {percent}%"
+      update_interval: 5000
+      time_remaining_natural: False
+      hide_unsupported: True
+      charging_options:
+        icon_format: "{charging_icon}"
+        blink_charging_icon: true
+        blink_interval: 500
+      status_thresholds:
+        critical: 10
+        low: 25
+        medium: 75
+        high: 95
+        full: 100
+      status_icons:
+        icon_charging: "\uf0e7"
+        icon_critical: "\uf244"
+        icon_low: "\uf243"
+        icon_medium: "\uf242"
+        icon_high: "\uf241"
+        icon_full: "\uf240"
+      label_shadow:
+        enabled: true
+        color: "black"
+        radius: 3
+        offset: [ 1, 1 ]
+  volume:
+    type: "yasb.volume.VolumeWidget"
+    options:
+      label: "<span>{icon}</span> {level}"
+      label_alt: "{volume}"
+      tooltip: false
+      volume_icons:
+        - "󰝟"
+        - "󰕿"
+        - "󰖀"
+        - "󰖀"
+        - "󰕾"
+      callbacks:
+        on_left: "toggle_mute"
+        on_right: "exec cmd.exe /c start ms-settings:sound"
+  clock:
+    type: "yasb.clock.ClockWidget"
+    options:
+      label: "<span>{icon}</span> {%Y-%m-%d %H:%M}"
+      label_alt: "{%Y-%m-%d %H:%M:%S}"
+      icons:
+        clock_01 : "󰃰 "
+        clock_02 : "󰃰 "
+        clock_03 : "󰃰 "
+        clock_04 : "󰃰 "
+        clock_05 : "󰃰 "
+        clock_06 : "󰃰 "
+        clock_07 : "󰃰 "
+        clock_08 : "󰃰 " 
+        clock_09 : "󰃰 "
+        clock_10 : "󰃰 "
+        clock_11 : "󰃰 "
+        clock_12 : "󰃰 "
+        clock_16 : "󰃰 "
+        clock_21 : "󰃰 "
+        clock_22 : "󰃰 "
+        clock_23 : "󰃰 "
+      timezones: []
+      calendar: 
+        blur: false
+        round_corners: false
+        alignment: "center"
+        direction: "down"
+      callbacks:
+        on_left: "toggle_calendar"
+        on_right: "toggle_label"
