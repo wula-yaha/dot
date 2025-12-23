@@ -95,6 +95,10 @@ function Main {
         # WindowsTerminal
         (Join-Path (Join-Path $DotDir "WindowsTerminal") "settings.json") = (Join-Path (Join-Path (Join-Path (Join-Path $env:LOCALAPPDATA "Packages") "Microsoft.WindowsTerminal_8wekyb3d8bbwe") "LocalState") "settings.json")
 
+        # YASB
+        (Join-Path (Join-Path $DotDir "yasb") "config.yaml") = (Join-Path (Join-Path (Join-Path $env:USERPROFILE ".config") "yasb") "config.yaml")
+        (Join-Path (Join-Path $DotDir "yasb") "styles.css") = (Join-Path (Join-Path (Join-Path $env:USERPROFILE ".config") "yasb") "styles.css")
+        
         # Zebar
         (Join-Path (Join-Path (Join-Path $DotDir "glzr") "zebar") "settings.json") = (Join-Path (Join-Path (Join-Path $env:USERPROFILE ".glzr") "zebar") "settings.json")
         (Join-Path (Join-Path (Join-Path (Join-Path $DotDir "glzr") "zebar") "starter") "zpack.json") = (Join-Path (Join-Path (Join-Path (Join-Path $env:USERPROFILE ".glzr") "zebar") "starter") "zpack.json")
