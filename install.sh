@@ -58,91 +58,91 @@ link_file() {
 		# Softlink creating
 		echo "Link $destination -> $source"
 		ln -snf "$source" "$destination"
-	}
+}
 
-	main() {
+main() {
 
-		os=$(detect_os)
+    os=$(detect_os)
 
-		# AppleTerminal
-		if [ "$os" = "macOS" ] && [ -f "$dotdir/AppleTerminal/com.apple.Terminal.plist" ]; then
-			defaults import com.apple.Terminal "$dotdir/AppleTerminal/com.apple.Terminal.plist"
-		fi
+    # AppleTerminal
+    if [ "$os" = "macOS" ] && [ -f "$dotdir/AppleTerminal/com.apple.Terminal.plist" ]; then
+        defaults import com.apple.Terminal "$dotdir/AppleTerminal/com.apple.Terminal.plist"
+    fi
 
-		# Alacritty
-		link_file "$dotdir/alacritty/alacritty.toml" "$HOME/.config/alacritty/alacritty.toml"
+    # Alacritty
+    link_file "$dotdir/alacritty/alacritty.toml" "$HOME/.config/alacritty/alacritty.toml"
 
-		# Aerospace
-		if [ "$os" = "macOS" ]; then
-			link_file "$dotdir/aerospace/aerospace.toml" "$HOME/.config/aerospace/aerospace.toml"
-		fi
+    # Aerospace
+    if [ "$os" = "macOS" ]; then
+        link_file "$dotdir/aerospace/aerospace.toml" "$HOME/.config/aerospace/aerospace.toml"
+    fi
 
-	    # awesomeWM
-        if [ "$os" = "Linux" ] || [ "$os" = "BSD" ]; then
-			link_file "$dotdir/awesome/rc.lua" "$HOME/.config/awesome/rc.lua"
-		fi
-		
-		# Borders
-		if [ "$os" = "macOS" ]; then
-			link_file "$dotdir/borders/bordersrc" "$HOME/.config/borders/bordersrc"
-		fi
+    # awesomeWM
+    if [ "$os" = "Linux" ] || [ "$os" = "BSD" ]; then
+        link_file "$dotdir/awesome/rc.lua" "$HOME/.config/awesome/rc.lua"
+    fi
+    
+    # Borders
+    if [ "$os" = "macOS" ]; then
+        link_file "$dotdir/borders/bordersrc" "$HOME/.config/borders/bordersrc"
+    fi
 
-		# Emacs
-		link_file "$dotdir/emacs/early-init.el" "$HOME/.emacs.d/early-init.el"
-		link_file "$dotdir/emacs/init.el" "$HOME/.emacs.d/init.el"
+    # Emacs
+    link_file "$dotdir/emacs/early-init.el" "$HOME/.emacs.d/early-init.el"
+    link_file "$dotdir/emacs/init.el" "$HOME/.emacs.d/init.el"
 
-		# Ghostty
-		if [ "$os" = "macOS" ]; then
-			link_file "$dotdir/ghostty/config" "$HOME/Library/Application Support/com.mitchellh.ghostty/config"
-		else
-			link_file "$dotdir/ghostty/config" "$HOME/.config/ghostty/config"
-		fi
+    # Ghostty
+    if [ "$os" = "macOS" ]; then
+        link_file "$dotdir/ghostty/config" "$HOME/Library/Application Support/com.mitchellh.ghostty/config"
+    else
+        link_file "$dotdir/ghostty/config" "$HOME/.config/ghostty/config"
+    fi
 
-		# Helix
-		link_file "$dotdir/helix/config.toml" "$HOME/.config/helix/config.toml"
-		link_file "$dotdir/helix/themes" "$HOME/.config/helix/themes"
+    # Helix
+    link_file "$dotdir/helix/config.toml" "$HOME/.config/helix/config.toml"
+    link_file "$dotdir/helix/themes" "$HOME/.config/helix/themes"
 
-		# iTerm2
-		if [ "$os" = "macOS" ]; then
-			defaults write com.googlecode.iterm2 "PrefsCustomFolder" -string "$dotdir/iterm2"
-			defaults write com.googlecode.iterm2 "LoadPrefsFromCustomFolder" -bool true
-		fi
+    # iTerm2
+    if [ "$os" = "macOS" ]; then
+        defaults write com.googlecode.iterm2 "PrefsCustomFolder" -string "$dotdir/iterm2"
+        defaults write com.googlecode.iterm2 "LoadPrefsFromCustomFolder" -bool true
+    fi
 
-		# kitty
-		link_file "$dotdir/kitty/kitty.conf" "$HOME/.config/kitty/kitty.conf"
+    # kitty
+    link_file "$dotdir/kitty/kitty.conf" "$HOME/.config/kitty/kitty.conf"
 
-		# Neovim
-		link_file "$dotdir/nvim/init.lua" "$HOME/.config/nvim/init.lua"
+    # Neovim
+    link_file "$dotdir/nvim/init.lua" "$HOME/.config/nvim/init.lua"
 
-		# skhd
-		if [ "$os" = "macOS" ]; then
-		  link_file "$dotdir/skhd" "$HOME/.config/skhdrc"
-		fi
+    # skhd
+    if [ "$os" = "macOS" ]; then
+        link_file "$dotdir/skhd" "$HOME/.config/skhdrc"
+    fi
 
-		# Vim
-		link_file "$dotdir/vim/init.vim" "$HOME/.vim/vimrc"
+    # Vim
+    link_file "$dotdir/vim/init.vim" "$HOME/.vim/vimrc"
 
-		# VSCode
-		if [ "$os" = "macOS" ]; then
-			link_file "$dotdir/vscode/settings.json" "$HOME/Library/Application Support/Code/User/settings.json"
-			link_file "$dotdir/vscode/keybindings.json" "$HOME/Library/Application Support/Code/User/keybindings.json"
-		else
-			link_file "$dotdir/vscode/settings.json" "$HOME/.config/Code/User/settings.json"
-			link_file "$dotdir/vscode/keybindings.json" "$HOME/.config/Code/User/keybindings.json"
-		fi
+    # VSCode
+    if [ "$os" = "macOS" ]; then
+        link_file "$dotdir/vscode/settings.json" "$HOME/Library/Application Support/Code/User/settings.json"
+        link_file "$dotdir/vscode/keybindings.json" "$HOME/Library/Application Support/Code/User/keybindings.json"
+    else
+        link_file "$dotdir/vscode/settings.json" "$HOME/.config/Code/User/settings.json"
+        link_file "$dotdir/vscode/keybindings.json" "$HOME/.config/Code/User/keybindings.json"
+    fi
 
-		# WezTerm
-		link_file "$dotdir/wezterm/wezterm.lua" "$HOME/.config/wezterm/wezterm.lua"
+    # WezTerm
+    link_file "$dotdir/wezterm/wezterm.lua" "$HOME/.config/wezterm/wezterm.lua"
 
-		# yabai
-		if [ "$os" = "macOS" ]; then
-		  link_file "$dotdir/yabai/yabairc" "$HOME/.config/yabai/yabairc"
-		fi
+    # yabai
+    if [ "$os" = "macOS" ]; then
+        link_file "$dotdir/yabai/yabairc" "$HOME/.config/yabai/yabairc"
+    fi
 
-		# Zed
-		link_file "$dotdir/zed/settings.json" "$HOME/.config/zed/settings.json"
-		link_file "$dotdir/zed/keymap.json" "$HOME/.config/zed/keymap.json"
+    # Zed
+    link_file "$dotdir/zed/settings.json" "$HOME/.config/zed/settings.json"
+    link_file "$dotdir/zed/keymap.json" "$HOME/.config/zed/keymap.json"
 
-	}
+}
 
-	main
+main
