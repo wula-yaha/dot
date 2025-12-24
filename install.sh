@@ -64,6 +64,11 @@ link_file() {
 
 		os=$(detect_os)
 
+		# AppleTerminal
+		if [ "$os" = "macOS" ] && [ -f "$dotdir/AppleTerminal/com.apple.Terminal.plist" ]; then
+			defaults import com.apple.Terminal "$dotdir/AppleTerminal/com.apple.Terminal.plist"
+		fi
+
 		# Alacritty
 		link_file "$dotdir/alacritty/alacritty.toml" "$HOME/.config/alacritty/alacritty.toml"
 
@@ -112,11 +117,6 @@ link_file() {
 		# skhd
 		if [ "$os" = "macOS" ]; then
 		  link_file "$dotdir/skhd" "$HOME/.config/skhdrc"
-		fi
-
-		# Terminal.app
-		if [ "$os" = "macOS" ] && [ -f "$dotdir/AppleTerminal/com.apple.Terminal.plist" ]; then
-			defaults import com.apple.Terminal "$dotdir/AppleTerminal/com.apple.Terminal.plist"
 		fi
 
 		# Vim
