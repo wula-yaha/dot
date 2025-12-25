@@ -91,6 +91,11 @@ main() {
     link_file "$dotdir/emacs/early-init.el" "$HOME/.emacs.d/early-init.el"
     link_file "$dotdir/emacs/init.el" "$HOME/.emacs.d/init.el"
 
+    # foot
+    if [ "$os" = "Linux" ] || [ "$os" = "BSD" ]; then
+        link_file "$dotdir/foot/foot.ini" "$HOME/.config/foot/foot.ini"
+    fi
+
     # Ghostty
     if [ "$os" = "macOS" ]; then
         link_file "$dotdir/ghostty/config" "$HOME/Library/Application Support/com.mitchellh.ghostty/config"
