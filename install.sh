@@ -81,7 +81,7 @@ main() {
     if [ "$os" = "Linux" ] || [ "$os" = "BSD" ]; then
         link_file "$dotdir/awesome/rc.lua" "$HOME/.config/awesome/rc.lua"
     fi
-    
+
     # Borders
     if [ "$os" = "macOS" ]; then
         link_file "$dotdir/borders/bordersrc" "$HOME/.config/borders/bordersrc"
@@ -114,9 +114,14 @@ main() {
     # Neovim
     link_file "$dotdir/nvim/init.lua" "$HOME/.config/nvim/init.lua"
 
+    # QTile
+    if [ "$os" = "Linux" ]; then
+        link_file "$dotdir/qtile/config.py" "$HOME/.config/qtile/config.py"
+    fi
+
     # skhd
     if [ "$os" = "macOS" ]; then
-        link_file "$dotdir/skhd" "$HOME/.config/skhdrc"
+        link_file "$dotdir/skhd/skhdrc" "$HOME/.config/skhdrc"
     fi
 
     # Vim
@@ -133,6 +138,9 @@ main() {
 
     # WezTerm
     link_file "$dotdir/wezterm/wezterm.lua" "$HOME/.config/wezterm/wezterm.lua"
+
+    # X11
+    link_file "$dotdir/X11/Xresources" "$HOME/.Xresources"
 
     # yabai
     if [ "$os" = "macOS" ]; then
