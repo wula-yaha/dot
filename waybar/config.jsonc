@@ -4,8 +4,11 @@
     "height": 30,
     "spacing": 4,
     "modules-left": [
+        "custom/arch-icon",
         "niri/workspaces",
         "niri/window",
+        "hyprland/workspaces",
+        "hyprland/window",
     ],
     "modules-center": [],
     "modules-right": [
@@ -16,10 +19,21 @@
         "clock",
         "tray",
     ],
+    "custom/arch-icon": {
+        "format": "  ",
+        "tooltip": false,
+        "on-click": "rofi -show drun",
+    },
     "niri/workspaces": {
         "format": "{index}",
     },
     "niri/window": {
+        "format": "{title}",
+    },
+    "hyprland/workspaces": {
+        "format": "{name}",
+    },
+    "hyprland/window": {
         "format": "{title}",
     },
     "cpu": {
