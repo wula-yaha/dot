@@ -223,6 +223,7 @@ def autostart():
         "xrdb -merge ~/.Xresources",
         "ibus-daemon --drxR",
         "redshift -x && redshift -O 4500",
+        "picom",
     ]
     for p in process:
         qtile.spawn(p + " &")
