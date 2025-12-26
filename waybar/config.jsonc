@@ -1,0 +1,55 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "spacing": 4,
+    "modules-left": [
+        "niri/workspaces",
+        "niri/window",
+    ],
+    "modules-center": [],
+    "modules-right": [
+        "cpu",
+        "memory",
+        "pulseaudio",
+        "battery",
+        "clock",
+        "tray",
+    ],
+    "niri/workspaces": {
+        "format": "{index}",
+    },
+    "niri/window": {
+        "format": "{title}",
+    },
+    "cpu": {
+        "format": "CPU {usage}%",
+        "tooltip": false
+    },
+    "memory": {
+        "format": "RAM {}%"
+    },
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "BAT {capacity}%",
+        "format-full": "BAT {capacity}%",
+        "format-charging": "BAT {capacity}%",
+        "format-plugged": "BAT {capacity}%",
+        "format-alt": "BAT {time}",
+    },
+    "pulseaudio": {
+        "format": "VOL {volume}%",
+    },
+    "clock": {
+        "format": "{:%Y-%m-%d %H:%M}",
+        "format-alt": "{:%Y-%m-%d %H:%M}"
+    },
+    "tray": {
+        "icon-size": 16,
+        "spacing": 4,
+    },
+}
