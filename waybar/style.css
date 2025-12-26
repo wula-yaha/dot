@@ -56,6 +56,11 @@ window#waybar {
     color: @base;
 }
 
+#workspaces button.active {
+    background-color: @green;
+    color: @base;
+}
+
 #workspaces button.focused {
     background-color: @green;
     color: @base;
@@ -132,4 +137,3 @@ window#waybar {
     border-radius: 8px;
     padding: 0 8px;
 }
-
