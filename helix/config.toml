@@ -1,4 +1,4 @@
-theme = "custom_catppuccin_mocha"
+theme = "default"
 
 [editor]
 scrolloff = 1

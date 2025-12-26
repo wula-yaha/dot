@@ -114,7 +114,6 @@ main() {
 
     # Helix
     link_file "$dotdir/helix/config.toml" "$HOME/.config/helix/config.toml"
-    link_file "$dotdir/helix/themes" "$HOME/.config/helix/themes"
 
     # iTerm2
     if [ "$os" = "macOS" ]; then

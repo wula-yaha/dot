@@ -351,7 +351,6 @@ require("lazy").setup({
 						which_key = true,
 					},
 				})
-				vim.cmd.colorscheme("catppuccin")
 			end,
 		},
 		{
