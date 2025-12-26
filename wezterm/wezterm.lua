@@ -40,13 +40,6 @@ config.line_height = 1.2
 config.hide_tab_bar_if_only_one_tab = true
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
-config.color_scheme = "Catppuccin Mocha"
-config.colors = {
-	background = "#11111b",
-	tab_bar = {
-		background = "#11111b",
-	},
-}
 config.initial_cols = 120
 config.initial_rows = 30
 config.window_padding = {
