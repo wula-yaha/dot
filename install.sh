@@ -103,6 +103,15 @@ main() {
         link_file "$dotdir/ghostty/config" "$HOME/.config/ghostty/config"
     fi
 
+    # Hyprland
+    if [ "$os" = "Linux" ] || [ "$os" = "BSD" ]; then
+        link_file "$dotdir/hypr/hypridle.conf" "$HOME/.config/hypr/hypridle.conf"
+        link_file "$dotdir/hypr/hyprland.conf" "$HOME/.config/hypr/hyprland.conf"
+        link_file "$dotdir/hypr/hyprlock.conf" "$HOME/.config/hypr/hyprlock.conf"
+        link_file "$dotdir/hypr/hyprpaper.conf" "$HOME/.config/hypr/hyprpaper.conf"
+        link_file "$dotdir/hypr/hyprsunset.conf" "$HOME/.config/hypr/hyprsunset.conf"
+    fi
+
     # Helix
     link_file "$dotdir/helix/config.toml" "$HOME/.config/helix/config.toml"
     link_file "$dotdir/helix/themes" "$HOME/.config/helix/themes"
@@ -119,9 +128,19 @@ main() {
     # Neovim
     link_file "$dotdir/nvim/init.lua" "$HOME/.config/nvim/init.lua"
 
+    # niri
+    if [ "$os" = "Linux" ] || [ "$os" = "BSD" ]; then
+        link_file "$dotdir/niri/config.kdl" "$HOME/.config/niri/config.kdl"
+    fi
+
     # QTile
     if [ "$os" = "Linux" ]; then
         link_file "$dotdir/qtile/config.py" "$HOME/.config/qtile/config.py"
+    fi
+
+    # rofi
+    if [ "$os" = "Linux" ] || [ "$os" = "BSD" ]; then
+        link_file "$dotdir/rofi/config.rasi" "$HOME/.config/rofi/config.rasi"
     fi
 
     # skhd
@@ -139,6 +158,12 @@ main() {
     else
         link_file "$dotdir/vscode/settings.json" "$HOME/.config/Code/User/settings.json"
         link_file "$dotdir/vscode/keybindings.json" "$HOME/.config/Code/User/keybindings.json"
+    fi
+
+    # waybar
+    if [ "$os" = "Linux" ] || [ "$os" = "BSD" ]; then
+        link_file "$dotdir/waybar/config.jsonc" "$HOME/.config/waybar/config.jsonc"
+        link_file "$dotdir/waybar/style.css" "$HOME/.config/waybar/style.css"
     fi
 
     # WezTerm
