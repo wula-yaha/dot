@@ -36,6 +36,7 @@ spawn-at-startup "waybar"
 spawn-at-startup "nm-applet"
 spawn-at-startup "flameshot"
 spawn-at-startup "copyq"
+spawn-at-startup "udiskie --tray"
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 animations {
