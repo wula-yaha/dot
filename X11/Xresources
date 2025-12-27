@@ -22,32 +22,32 @@ URxvt.intensityStyles: false
 URxvt.font: xft:JetBrainsMono Nerd Font:size=12
 URxvt.saveLines: 2000
 URxvt.scrollBar: false
-URxvt.cursorColor: white
+URxvt.cursorColor: #eaeaea
 URxvt.perl-ext-common: default,matcher,resize-font,url-select,keyboard-select,clipboard
-URxvt.colorUL: #4682B4
+URxvt.colorUL: #eaeaea
 URxvt*depth: 32
 
 ! COLORS FOR SXIV
-Sxiv.foreground: #bbc2cf
-Sxiv.background: #282c34
+Sxiv.foreground: #eaeaea
+Sxiv.background: #151515
 Sxiv.font: Ubuntu:style=bold:size=11
 
 *.foreground: #eaeaea
 *.background: #000000
-*.cursorColor: #f5e0dc
+*.cursorColor: #d54e53
 *.color0: #151515
-*.color1: #f38ba8
-*.color2: #a6e3a1
-*.color3: #fab387
-*.color4: #89b4fa
-*.color5: #cba6f7
-*.color6: #89dceb
-*.color7: #cdd6f4
+*.color1: #d54e53
+*.color2: #b9ca4a
+*.color3: #e7c547
+*.color4: #7aa6da
+*.color5: #c397d8
+*.color6: #70c0b1
+*.color7: #eaeaea
 *.color8: #151515
-*.color9: #f38ba8
-*.color10: #a6e3a1
-*.color11: #f9e2af
-*.color12: #89b4fa
-*.color13: #cba6f7
-*.color14: #89dceb
-*.color15: #cdd6f4
+*.color9: #d54e53
+*.color10: #b9ca4a
+*.color11: #e7c547
+*.color12: #7aa6da
+*.color13: #c397d8
+*.color14: #70c0b1
+*.color15: #eaeaea
