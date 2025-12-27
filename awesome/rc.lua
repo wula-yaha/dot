@@ -40,63 +40,27 @@ do
 end
 
 -- THEME --
-local catppuccin = {
-	rosewater = "#f5e0dc",
-	flamingo = "#f2cdcd",
-	pink = "#f5c2e7",
-	mauve = "#cba6f7",
-	red = "#f38ba8",
-	maroon = "#eba0ac",
-	peach = "#fab387",
-	yellow = "#f9e2af",
-	green = "#a6e3a1",
-	teal = "#94e2d5",
-	sky = "#89dceb",
-	sapphire = "#74c7ec",
-	blue = "#89b4fa",
-	lavender = "#b4befe",
-	text = "#cdd6f4",
-	subtext1 = "#bac2de",
-	subtext0 = "#a6adc8",
-	overlay2 = "#9399b2",
-	overlay1 = "#7f849c",
-	overlay0 = "#6c7086",
-	surface2 = "#585b70",
-	surface1 = "#45475a",
-	surface0 = "#313244",
-	base = "#1e1e2e",
-	mantle = "#181825",
-	crust = "#11111b",
-}
 beautiful.init({
-	font = "JetBrainsMono Nerd Font Semibold 11",
-	bg_normal = catppuccin["crust"],
-	bg_focus = catppuccin["crust"],
-	bg_urgent = catppuccin["crust"],
-	bg_minimize = catppuccin["crust"],
-	bg_systray = catppuccin["crust"],
-	fg_normal = catppuccin["text"],
-	fg_focus = catppuccin["green"],
-	fg_urgent = catppuccin["red"],
-	fg_minimize = catppuccin["text"],
-	useless_gap = dpi(4),
-	border_width = dpi(2),
-	border_normal = catppuccin["surface2"],
-	border_focus = catppuccin["green"],
-	border_marked = catppuccin["red"],
+	font = "sans bold 10",
+	bg_normal = "#222222",
+	bg_focus = "#535d6c",
+	bg_urgent = "#ff0000",
+	bg_minimize = "#444444",
+	bg_systray = "#222222",
+	fg_normal = "#aaaaaa",
+	fg_focus = "#ffffff",
+	fg_urgent = "#ffffff",
+	fg_minimize = "#ffffff",
+	useless_gap = dpi(0),
+	border_width = dpi(1),
+	border_normal = "#000000",
+	border_focus = "#535d6c",
+	border_marked = "#91231c",
 	menu_height = dpi(40),
 	menu_width = dpi(200),
-	taglist_fg_focus = catppuccin["base"],
-	taglist_bg_focus = catppuccin["green"],
-	taglist_fg_urgent = catppuccin["base"],
-	taglist_bg_urgent = catppuccin["red"],
-	taglist_squares_sel = theme_assets.taglist_squares_sel(dpi(0), catppuccin["green"]),
-	taglist_squares_unsel = theme_assets.taglist_squares_unsel(dpi(0), catppuccin["surface1"]),
+	taglist_squares_sel = theme_assets.taglist_squares_sel(dpi(0), "#aaaaaa"),
+	taglist_squares_unsel = theme_assets.taglist_squares_unsel(dpi(0), "#aaaaaa"),
 	menu_submenu_icon = get_themes_dir .. "default/submenu.png",
-	titlebar_fg_normal = catppuccin["text"],
-	titlebar_bg_normal = catppuccin["crust"],
-	titlebar_fg_focus = catppuccin["text"],
-	titlebar_bg_focus = catppuccin["crust"],
 	titlebar_close_button_normal = get_themes_dir .. "default/titlebar/close_normal.png",
 	titlebar_close_button_focus = get_themes_dir .. "default/titlebar/close_focus.png",
 	titlebar_minimize_button_normal = get_themes_dir .. "default/titlebar/minimize_normal.png",
@@ -117,10 +81,6 @@ beautiful.init({
 	titlebar_maximized_button_focus_inactive = get_themes_dir .. "default/titlebar/maximized_focus_inactive.png",
 	titlebar_maximized_button_normal_active = get_themes_dir .. "default/titlebar/maximized_normal_active.png",
 	titlebar_maximized_button_focus_active = get_themes_dir .. "default/titlebar/maximized_focus_active.png",
-	tasklist_bg_normal = catppuccin["crust"],
-	tasklist_bg_focus = catppuccin["crust"],
-	tasklist_fg_normal = catppuccin["text"],
-	tasklist_fg_focus = catppuccin["text"],
 	layout_fairh = get_themes_dir .. "default/layouts/fairhw.png",
 	layout_fairv = get_themes_dir .. "default/layouts/fairvw.png",
 	layout_floating = get_themes_dir .. "default/layouts/floatingw.png",
@@ -137,16 +97,9 @@ beautiful.init({
 	layout_cornerne = get_themes_dir .. "default/layouts/cornernew.png",
 	layout_cornersw = get_themes_dir .. "default/layouts/cornersww.png",
 	layout_cornerse = get_themes_dir .. "default/layouts/cornersew.png",
-	prompt_bg = catppuccin["crust"],
-	prompt_fg = catppuccin["red"],
-	prompt_bg_cursor = catppuccin["red"],
-	notification_font = "JetBrainsMono Nerd Font 10",
-	notification_bg = catppuccin["base"],
-	notification_fg = catppuccin["text"],
-	notification_border_color = catppuccin["surface2"],
-	awesome_icon = theme_assets.awesome_icon(dpi(15), catppuccin["base"], catppuccin["text"]),
-	-- wallpaper = get_themes_dir .. "default/background.png",
-	wallpaper = "~/wallpaper/wp1.jpg",
+	awesome_icon = theme_assets.awesome_icon(dpi(15), "#222222", "#535d6c"),
+	wallpaper = get_themes_dir .. "default/background.png",
+	-- wallpaper = "~/wallpaper/wp1.jpg",
 	icon_theme = nil,
 })
 
@@ -154,25 +107,69 @@ beautiful.init({
 local modkey = "Mod4"
 awful.layout.layouts = {
 	awful.layout.suit.tile,
-	awful.layout.suit.floating,
-	awful.layout.suit.tile.left,
-	awful.layout.suit.tile.bottom,
-	awful.layout.suit.tile.top,
-	awful.layout.suit.fair,
-	awful.layout.suit.fair.horizontal,
-	awful.layout.suit.spiral,
-	awful.layout.suit.spiral.dwindle,
-	awful.layout.suit.max,
-	awful.layout.suit.max.fullscreen,
-	awful.layout.suit.magnifier,
-	awful.layout.suit.corner.nw,
-	awful.layout.suit.corner.ne,
-	awful.layout.suit.corner.sw,
-	awful.layout.suit.corner.se,
+	-- awful.layout.suit.floating,
+	-- awful.layout.suit.tile.left,
+	-- awful.layout.suit.tile.bottom,
+	-- awful.layout.suit.tile.top,
+	-- awful.layout.suit.fair,
+	-- awful.layout.suit.fair.horizontal,
+	-- awful.layout.suit.spiral,
+	-- awful.layout.suit.spiral.dwindle,
+	-- awful.layout.suit.max,
+	-- awful.layout.suit.max.fullscreen,
+	-- awful.layout.suit.magnifier,
+	-- awful.layout.suit.corner.nw,
+	-- awful.layout.suit.corner.ne,
+	-- awful.layout.suit.corner.sw,
+	-- awful.layout.suit.corner.se,
 }
-menubar.utils.terminal = "xterm"
+menubar.utils.terminal = "alacritty"
 
 -- WIBAR --
+
+-- Launcher
+local launcher = awful.widget.launcher({
+	image = beautiful.awesome_icon,
+	menu = awful.menu({
+		items = {
+			{
+				"awesome",
+				{
+					{
+						"hotkeys",
+						function()
+							hotkeys_popup.show_help(nil, awful.screen.focused())
+						end,
+					},
+					{
+						"manual",
+						"alacritty -e man awesome",
+					},
+					{
+						"edit config",
+						"alacritty -e vim awesome.conffile",
+					},
+					{
+						"restart",
+						awesome.restart,
+					},
+					{
+						"quit",
+						function()
+							awesome.quit()
+						end,
+					},
+				},
+				beautiful.awesome_icon,
+			},
+			{
+				"open terminal",
+				"alacritty",
+			},
+		},
+	}),
+})
+
 awful.screen.connect_for_each_screen(function(s)
 	-- Wallpaper
 	if beautiful.wallpaper then
@@ -193,7 +190,7 @@ awful.screen.connect_for_each_screen(function(s)
 	s.layoutbox = awful.widget.layoutbox(s)
 
 	-- Taglist
-	awful.tag({ " 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 ", " 0 " }, s, awful.layout.layouts[1])
+	awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" }, s, awful.layout.layouts[1])
 	s.taglist = awful.widget.taglist({
 		screen = s,
 		filter = awful.widget.taglist.filter.noempty,
@@ -217,6 +214,7 @@ awful.screen.connect_for_each_screen(function(s)
 		-- Left
 		{
 			layout = wibox.layout.fixed.horizontal,
+			launcher,
 			s.taglist,
 			s.tasklist,
 			s.promptbox,
@@ -229,37 +227,11 @@ awful.screen.connect_for_each_screen(function(s)
 		{
 			layout = wibox.layout.fixed.horizontal,
 			spacing = xresources.apply_dpi(16),
-			wibox.widget({
-				awful.widget.watch(
-					[[sh -c "echo CPU:$(top -bn1 | grep Cpu | awk '{print sprintf(\"\%.0f\", $2)}')%"]],
-					3
-				),
-				fg = catppuccin["red"],
-				widget = wibox.container.background,
-			}),
-			wibox.widget({
-				awful.widget.watch([[sh -c "echo RAM:$(free | grep Mem | awk '{printf \"%.0f\", ($3/$2)*100}')%"]], 3),
-				fg = catppuccin["peach"],
-				widget = wibox.container.background,
-			}),
-			wibox.widget({
-				awful.widget.watch([[sh -c "echo BAT:$(cat /sys/class/power_supply/BAT1/capacity)%"]], 120),
-				fg = catppuccin["green"],
-				widget = wibox.container.background,
-			}),
-			wibox.widget({
-				awful.widget.watch(
-					[[sh -c "echo VOL:$(echo $(amixer sget Master | grep -o -E '[0-9]+%' | head -1))"]],
-					1
-				),
-				fg = catppuccin["text"],
-				widget = wibox.container.background,
-			}),
-			wibox.widget({
-				awful.widget.watch([[sh -c "echo DAT:$(date +%Y-%m-%d\ %H:%M)"]], 60),
-				fg = catppuccin["lavender"],
-				widget = wibox.container.background,
-			}),
+			awful.widget.watch([[sh -c "echo CPU:$(top -bn1 | grep Cpu | awk '{print sprintf(\"\%.0f\", $2)}')%"]], 3),
+			awful.widget.watch([[sh -c "echo RAM:$(free | grep Mem | awk '{printf \"%.0f\", ($3/$2)*100}')%"]], 3),
+			awful.widget.watch([[sh -c "echo BAT:$(cat /sys/class/power_supply/BAT1/capacity)%"]], 120),
+			awful.widget.watch([[sh -c "echo VOL:$(echo $(amixer sget Master | grep -o -E '[0-9]+%' | head -1))"]], 1),
+			awful.widget.watch([[sh -c "echo $(date +%Y-%m-%d\ %H:%M)"]], 60),
 			wibox.widget.systray(),
 			s.layoutbox,
 		},
@@ -272,7 +244,7 @@ local globalkeys = gears.table.join(
 		awful.screen.focused().promptbox:run()
 	end),
 	awful.key({ modkey }, "Return", function()
-		awful.spawn("xterm")
+		awful.spawn("alacritty")
 	end),
 	awful.key({ modkey, "Shift" }, "Return", function()
 		awful.spawn("emacs")
@@ -531,14 +503,6 @@ awful.rules.rules = {
 }
 
 -- SIGNAL --
-client.connect_signal("manage", function(c)
-	c.shape = function(cr, w, h)
-		gears.shape.rounded_rect(cr, w, h, 8)
-	end
-	if awesome.startup and not c.size_hints.user_position and not c.size_hints.program_position then
-		awful.placement.no_offscreen(c)
-	end
-end)
 client.connect_signal("request::titlebars", function(c)
 	awful.titlebar(c, { size = 24 }):setup({
 		-- Left
