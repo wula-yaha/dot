@@ -213,7 +213,9 @@ wmname = "LG3D"
 @hook.subscribe.startup_once
 def autostart():
     process = [
+        "picom",
         "xclip",
+        "conky",
         "nm-applet",
         "blueman-applet",
         "flameshot",
@@ -222,7 +224,6 @@ def autostart():
         "xrdb -merge ~/.Xresources",
         "ibus-daemon --drxR",
         "redshift -x && redshift -O 4500",
-        "picom",
     ]
     for p in process:
         qtile.spawn(p + " &")

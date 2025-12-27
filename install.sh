@@ -87,6 +87,16 @@ main() {
         link_file "$dotdir/borders/bordersrc" "$HOME/.config/borders/bordersrc"
     fi
 
+    # conky
+    if [ "$os" = "Linux" ] || [ "$os" = "BSD" ]; then
+        link_file "$dotdir/conky/conky.conf" "$HOME/.config/conky/conky.conf"
+    fi
+
+    # dunst
+    if [ "$os" = "Linux" ] || [ "$os" = "BSD" ]; then
+        link_file "$dotdir/dunst/dunstrc" "$HOME/.config/dunst/dunstrc"
+    fi
+
     # Emacs
     link_file "$dotdir/emacs/early-init.el" "$HOME/.emacs.d/early-init.el"
     link_file "$dotdir/emacs/init.el" "$HOME/.emacs.d/init.el"
@@ -130,6 +140,11 @@ main() {
     # niri
     if [ "$os" = "Linux" ] || [ "$os" = "BSD" ]; then
         link_file "$dotdir/niri/config.kdl" "$HOME/.config/niri/config.kdl"
+    fi
+
+    # polybar
+    if [ "$os" = "Linux" ] || [ "$os" = "BSD" ]; then
+        link_file "$dotdir/polybar/config.ini" "$HOME/.config/polybar/config.ini"
     fi
 
     # QTile

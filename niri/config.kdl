@@ -48,6 +48,8 @@ spawn-at-startup "nm-applet"
 spawn-at-startup "flameshot"
 spawn-at-startup "copyq"
 spawn-at-startup "udiskie --tray"
+spawn-at-startup "conky"
+spawn-at-startup "dunst"
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 animations {

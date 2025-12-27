@@ -563,6 +563,7 @@ end)
 -- AUTOSTART --
 local application = {
 	"xclip",
+	"conky",
 	"nm-applet",
 	"blueman-applet",
 	"flameshot",
