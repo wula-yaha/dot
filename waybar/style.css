@@ -1,11 +1,11 @@
 /* GENERAL */
 @define-color background #000000;
-@define-color foreground #ffffff;
-@define-color red #ff0000;
-@define-color green #ff0000;
-@define-color gray #808080;
-@define-color magenta #ff00ff;
-@define-color yellow #ffff00;
+@define-color background_alt #151515;
+@define-color foreground #eaeaea;
+@define-color red #d54e53;
+@define-color green #b9ca4a;
+@define-color purple #c397d8;
+@define-color yellow #e7c547;
 
 * {
     font-family: JetBrainsMono Nerd Font, FontAwesome, Roboto, Helvetica, Arial, sans-serif;
@@ -33,7 +33,7 @@ window#waybar {
 }
 
 #workspaces button:hover {
-    background: @gray;
+    background: @background_alt;
     color: @foreground;
 }
 
@@ -59,7 +59,7 @@ window#waybar {
 /* RIGHT */
 #cpu {
     background-color: @background;
-    border: solid 2px @gray;
+    border: solid 2px @background_alt;
     border-radius: 8px;
     color: @foreground;
     padding: 0 8px;
@@ -67,7 +67,7 @@ window#waybar {
 
 #memory {
     background-color: @background;
-    border: solid 2px @gray;
+    border: solid 2px @background_alt;
     border-radius: 8px;
     color: @foreground;
     padding: 0 8px;
@@ -75,7 +75,7 @@ window#waybar {
 
 #pulseaudio {
     background-color: @background;
-    border: solid 2px @gray;
+    border: solid 2px @background_alt;
     border-radius: 8px;
     color: @foreground;
     padding: 0 8px;
@@ -88,7 +88,7 @@ window#waybar {
 
 #battery {
     background-color: @background;
-    border: solid 2px @gray;
+    border: solid 2px @background_alt;
     border-radius: 8px;
     color: @foreground;
     padding: 0 8px;
@@ -106,7 +106,7 @@ window#waybar {
 
 #clock {
     background-color: @background;
-    border: solid 2px @gray;
+    border: solid 2px @background_alt;
     border-radius: 8px;
     color: @foreground;
     padding: 0 8px;
@@ -114,7 +114,7 @@ window#waybar {
 
 #tray {
     background-color: @background;
-    border: solid 2px @gray;
+    border: solid 2px @background_alt;
     border-radius: 8px;
     padding: 0 8px;
 }

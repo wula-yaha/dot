@@ -32,10 +32,10 @@ Sxiv.foreground: #bbc2cf
 Sxiv.background: #282c34
 Sxiv.font: Ubuntu:style=bold:size=11
 
-*.foreground: #cdd6f4
-*.background: #11111b
+*.foreground: #eaeaea
+*.background: #000000
 *.cursorColor: #f5e0dc
-*.color0: #1e1e2e
+*.color0: #151515
 *.color1: #f38ba8
 *.color2: #a6e3a1
 *.color3: #fab387
@@ -43,7 +43,7 @@ Sxiv.font: Ubuntu:style=bold:size=11
 *.color5: #cba6f7
 *.color6: #89dceb
 *.color7: #cdd6f4
-*.color8: #1e1e2e
+*.color8: #151515
 *.color9: #f38ba8
 *.color10: #a6e3a1
 *.color11: #f9e2af
