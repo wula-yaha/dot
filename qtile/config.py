@@ -210,7 +210,6 @@ wl_xcursor_theme = None
 wl_xcursor_size = 24
 wmname = "LG3D"
 
-
 @hook.subscribe.startup_once
 def autostart():
     process = [
