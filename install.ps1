@@ -61,10 +61,6 @@ function Main {
         # Neovim
         (Join-Path (Join-Path $DotDir "nvim") "init.lua") = (Join-Path (Join-Path $env:LOCALAPPDATA "nvim") "init.lua")
 
-        # VSCode
-        (Join-Path (Join-Path $DotDir "vscode") "settings.json") = (Join-Path (Join-Path (Join-Path $env:APPDATA "Code") "User") "settings.json")
-        (Join-Path (Join-Path $DotDir "vscode") "keybindings.json") = (Join-Path (Join-Path (Join-Path $env:APPDATA "Code") "User") "keybindings.json")
-
         # WezTerm
         (Join-Path (Join-Path $DotDir "wezterm") "wezterm.lua") = (Join-Path $env:USERPROFILE ".wezterm.lua")
 
