@@ -64,10 +64,6 @@ main() {
 
 	os=$(detect_os)
 
-	# Emacs
-	link_file "$dotdir/emacs/early-init.el" "$HOME/.emacs.d/early-init.el"
-	link_file "$dotdir/emacs/init.el" "$HOME/.emacs.d/init.el"
-
 	# Neovim
 	link_file "$dotdir/nvim/init.lua" "$HOME/.config/nvim/init.lua"
 

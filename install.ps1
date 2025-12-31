@@ -58,10 +58,6 @@ function Main {
 
     $LinkMap = @{
 
-        # Emacs
-        (Join-Path (Join-Path $DotDir "emacs") "early-init.el") = (Join-Path (Join-Path $env:APPDATA ".emacs.d") "early-inig.el")
-        (Join-Path (Join-Path $DotDir "emacs") "init.el") = (Join-Path (Join-Path $env:APPDATA ".emacs.d") "init.el")
-
         # Neovim
         (Join-Path (Join-Path $DotDir "nvim") "init.lua") = (Join-Path (Join-Path $env:LOCALAPPDATA "nvim") "init.lua")
 
