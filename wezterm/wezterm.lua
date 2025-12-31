@@ -1,13 +1,18 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
+wezterm.on("gui-startup", function(cmd)
+	local tab, pane, window = wezterm.mux.spawn_window(cmd or {})
+	window:gui_window():maximize()
+end)
+
 if wezterm.target_triple:find("windows") then
 	config.font_size = 10.0
-	config.window_background_opacity = 0.95
+	config.window_background_opacity = 0.99
 	config.default_prog = { "powershell.exe" }
 elseif wezterm.target_triple:find("darwin") then
 	config.font_size = 13.0
-	config.window_background_opacity = 0.95
+	config.window_background_opacity = 0.99
 	config.macos_window_background_blur = 10
 	config.send_composed_key_when_left_alt_is_pressed = false
 	config.send_composed_key_when_right_alt_is_pressed = true
@@ -18,6 +23,7 @@ elseif wezterm.target_triple:find("linux") then
 	config.default_prog = { "/bin/bash", "-l" }
 end
 
+config.color_scheme = "tokyonight_night"
 config.font = wezterm.font_with_fallback({
 	{
 		family = "JetBrainsMono Nerd Font",
@@ -40,8 +46,6 @@ config.line_height = 1.2
 config.hide_tab_bar_if_only_one_tab = true
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
-config.initial_cols = 120
-config.initial_rows = 30
 config.window_padding = {
 	left = 24,
 	right = 24,
