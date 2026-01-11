@@ -11,7 +11,6 @@ vim.opt.autowrite = true
 vim.opt.cursorline = true
 vim.opt.cursorcolumn = false
 vim.opt.wrap = false
-vim.opt.whichwrap = "b,s,h,l,<,>"
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
@@ -152,7 +151,12 @@ require("lazy").setup({
 		},
 	},
 	spec = {
-		{ "LazyVim/LazyVim" },
+		{
+			"LazyVim/LazyVim",
+			opts = {
+				colorscheme = "tokyonight-night",
+			},
+		},
 		{ import = "lazyvim.plugins" },
 		{ import = "lazyvim.plugins.extras.coding.luasnip" },
 		{ import = "lazyvim.plugins.extras.coding.nvim-cmp" },
@@ -164,15 +168,21 @@ require("lazy").setup({
 		{ import = "lazyvim.plugins.extras.editor.neo-tree" },
 		{ import = "lazyvim.plugins.extras.editor.outline" },
 		{ import = "lazyvim.plugins.extras.editor.overseer" },
-		{ import = "lazyvim.plugins.extras.editor.telescope" },
 		{ import = "lazyvim.plugins.extras.formatting.black" },
 		{ import = "lazyvim.plugins.extras.formatting.prettier" },
 		{ import = "lazyvim.plugins.extras.lang.clangd" },
+		{ import = "lazyvim.plugins.extras.lang.go" },
+		{ import = "lazyvim.plugins.extras.lang.json" },
+		{ import = "lazyvim.plugins.extras.lang.markdown" },
 		{ import = "lazyvim.plugins.extras.lang.python" },
+		{ import = "lazyvim.plugins.extras.lang.rust" },
+		{ import = "lazyvim.plugins.extras.lang.toml" },
+		{ import = "lazyvim.plugins.extras.lang.typescript" },
+		{ import = "lazyvim.plugins.extras.lang.yaml" },
+		{ import = "lazyvim.plugins.extras.lang.zig" },
 		{ import = "lazyvim.plugins.extras.linting.eslint" },
 		{ import = "lazyvim.plugins.extras.lsp.none-ls" },
 		{ import = "lazyvim.plugins.extras.test.core" },
-		{ import = "lazyvim.plugins.extras.ui.indent-blankline" },
 		{ import = "lazyvim.plugins.extras.ui.treesitter-context" },
 		{
 			"HiPhish/rainbow-delimiters.nvim",
@@ -203,6 +213,24 @@ require("lazy").setup({
 				})
 				vim.cmd("doautocmd FileType")
 			end,
+		},
+		{
+			"folke/snacks.nvim",
+			opts = {
+				indent = {
+					enabled = true,
+					chunk = {
+						enabled = true,
+						char = {
+							corner_top = "╭",
+							corner_bottom = "╰",
+							horizontal = "─",
+							vertical = "│",
+							arrow = ">",
+						},
+					},
+				},
+			},
 		},
 	},
 })

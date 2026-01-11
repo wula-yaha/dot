@@ -12,7 +12,7 @@ if wezterm.target_triple:find("windows") then
 	config.default_prog = { "powershell.exe" }
 elseif wezterm.target_triple:find("darwin") then
 	config.font_size = 13.0
-	config.window_background_opacity = 0.99
+	config.window_background_opacity = 1.0
 	config.macos_window_background_blur = 10
 	config.send_composed_key_when_left_alt_is_pressed = false
 	config.send_composed_key_when_right_alt_is_pressed = true
