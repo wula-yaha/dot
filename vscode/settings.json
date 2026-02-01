@@ -14,7 +14,7 @@
     "editor.quickSuggestions": {
         "other": true,
         "comments": false,
-        "strings": false,
+        "strings": false
     },
     "editor.renderLineHighlight": "none",
     "editor.semanticHighlighting.enabled": false,
@@ -27,16 +27,17 @@
         "**/.git/subtree-cache/**": true,
         "**/.hg/store/**": true,
         "**/node_modules/*": true,
-        "**/.venv/**": true,
+        "**/.venv/**": true
     },
     "git.decorations.enabled": false,
     "git.countBadge": "off",
     "window.zoomLevel": -0.65,
-    "window.logLevel": "Error",
     "workbench.colorTheme": "Solarized Dark",
     "workbench.enableExperiments": false,
     "workbench.reduceMotion": "on",
     "workbench.editor.enablePreview": false,
+    "workbench.settings.editor": "json",
+    "workbench.startupEditor": "none",
     "search.followSymlinks": false,
     "search.exclude": {
         "**/node_modules": true,
@@ -172,5 +173,5 @@
                 "workbench.action.showAllSymbols"
             ]
         }
-    ],
+    ]
 }
