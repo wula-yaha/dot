@@ -67,15 +67,7 @@
       };
       homeConfigurations = {
         "nico" = home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs {
-            system = "aarch64-darwin";
-            config.allowUnfreePredicate =
-              pkg:
-              builtins.elem (nixpkgs.lib.getName pkg) [
-                "vscode"
-                "vscode-extension-MS-python-vscode-pylance"
-              ];
-          };
+          pkgs = nixpkgs.legacyPackages."aarch64-darwin";
           extraSpecialArgs = { inherit inputs; };
           modules = [
             ./home-manager/default.nix
